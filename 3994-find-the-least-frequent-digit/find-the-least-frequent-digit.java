@@ -1,16 +1,17 @@
 class Solution {
     public int getLeastFrequentDigit(int n) {
-        Map<Integer, Integer> freq =new HashMap<>();
-        String numStr=String.valueOf(n);
-        for (char c:numStr.toCharArray()) {
-            int digit=c-'0';
-            freq.put(digit,freq.getOrDefault(digit,0)+1);
+        int[] count = new int[10];
+        while (n>0) {
+            int d=n%10;
+            count[d]++;
+            n/= 10;
         }
-        int minFreq=Collections.min(freq.values());
-        int ans=9; 
-        for (int d :freq.keySet()) {
-            if (freq.get(d)==minFreq) {
-                ans = Math.min(ans,d);
+        int minFreq=Integer.MAX_VALUE;
+        int ans=-1;
+        for (int d=0;d<=9;d++) {
+            if (count[d]>0&&count[d]<minFreq) {
+                minFreq=count[d];
+                ans=d;
             }
         }
         return ans;
