@@ -27,8 +27,7 @@ class Solution {
             if (r==n) {
                 result=node.val;
             }
-            node =
-            node.next;
+            node =node.next;
         }
 
         return result;
