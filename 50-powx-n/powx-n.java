@@ -1,17 +1,16 @@
 class Solution {
-    public double myPow(double x, long N) { 
-        if (N < 0){
-            return 1.0/ fastPow(x, -N);
+    public double myPow(double x, long n) { 
+        if(n<0){
+            x=1/x;
+            n=-n;
         }
-        return fastPow(x, N);
+        return power(x,n);
     }
-    double fastPow(double x, long n) {
-        if (n ==0) return 1.0;
-        double half =fastPow(x, n /2);
-        if (n % 2 == 0){
-            return half*half;
-        }else{
-            return x* half *half;
-        }
+    double power(double x, long n){
+        if(n==0)return 1.0;
+        double half=power(x,n/2);
+        if(n%2==0)return half*half;
+        else return half*half*x;
+
     }
 }
