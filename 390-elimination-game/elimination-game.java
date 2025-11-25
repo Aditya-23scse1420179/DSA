@@ -1,14 +1,15 @@
 class Solution {
     public int lastRemaining(int n) {
-        return helper(1, 1, n, true);
+        return helper(1,1,n,true);
+        
     }
-    private int helper(int head,int step,int remain,boolean left ){
+    public int helper(int head,int steps,int remain,boolean left ){
         if(remain==1)return head;
-        if(left||remain%2==1){
-            head=head+step;
+        if(left || remain%2==1){
+            head =head+steps;
         }
-        remain=remain/2;
-        step=step*2;
-        return helper(head,step,remain,!left);
+        remain =remain/2;
+        steps=steps*2;
+        return helper(head,steps,remain,!left);
     }
 }
