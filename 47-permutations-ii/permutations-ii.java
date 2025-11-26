@@ -10,7 +10,6 @@ class Solution {
     }
     public void helper(int[] nums, List<List<Integer>> ans,List<Integer> curr, boolean[] used) {
         if (curr.size() ==nums.length) {
-            
             ans.add(new ArrayList<>(curr));
             return;
         }
