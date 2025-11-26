@@ -3,12 +3,14 @@ class Solution {
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> curr = new ArrayList<>();
         boolean used[] = new boolean[nums.length];
+        Arrays.sort(nums);
         helper(nums, ans, curr, used);
+        
         return ans; 
     }
     public void helper(int[] nums, List<List<Integer>> ans,List<Integer> curr, boolean[] used) {
         if (curr.size() ==nums.length) {
-            if(ans.contains(curr))return;
+            
             ans.add(new ArrayList<>(curr));
             return;
         }
