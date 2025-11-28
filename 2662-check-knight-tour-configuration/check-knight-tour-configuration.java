@@ -11,7 +11,7 @@ class Solution {
         j=col-2;
         if(i>=0&&j>=0&&grid[i][j]==num+1)return isSafe(grid,i,j,num+1);
         i=row+1;
-        j=col-2;
+        j=col-2;// yahan baar baar galti ho rahi 
         if(i<n&&j>=0&&grid[i][j]==num+1)return isSafe(grid,i,j,num+1);
         i=row-2;
         j=col-1;
