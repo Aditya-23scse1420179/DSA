@@ -1,15 +1,15 @@
 class Solution {
     public List<List<String>> solveNQueens(int n) {
-        char [][]board = new char[n][n];
-        List<List<String>>ans = new ArrayList<>();
-        for( int i=0;i<n;i++){
+        char [][] board = new char [n][n];
+        List<List<String>> ans = new ArrayList<>();
+        for(int i=0;i<n;i++){
             Arrays.fill(board[i],'.');
         }
         nqueen(board,0,ans);
-        return ans ;
+        return ans;
     }
-    public void nqueen(char[][]board,int row,List<List<String>>ans ){
-        int n = board.length;
+    public void nqueen(char[][]board,int row,List<List<String>>ans){
+        int n =board.length;
         if(row==n){
             ans.add(convert(board));
             return;
@@ -19,11 +19,11 @@ class Solution {
                 board[row][col]='Q';
                 nqueen(board,row+1,ans);
                 board[row][col]='.';
-            }
+            }    
         }
     }
     public boolean isSafe(char[][]board,int row,int col){
-        int n = board.length;
+        int n=board.length;
         for(int i=0;i<row;i++){
             if(board[i][col]=='Q')return false;
         }
@@ -39,10 +39,12 @@ class Solution {
         return true;
     }
     public List<String> convert(char[][]board){
-        List<String>list=new ArrayList<>();
-        for(char[]row:board){
-            list.add(new String(row));
+        List<String>list= new ArrayList<>();
+        for(char[]ch :board){
+            list.add(new String (ch));
+
         }
         return list;
+
     }
 }
