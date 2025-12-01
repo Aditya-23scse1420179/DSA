@@ -23,7 +23,6 @@ class Solution {
     public void solveSudoku(char[][] board) {
         solve(board, 0, 0);
     }
-
     public boolean solve(char[][] board, int row, int col){
         if(row == 9) return true;   
         if(col == 9) return solve(board, row+1, 0);
