@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
     public int countCollisions(String diff) {
         boolean left=false;
         int rightIdx=-1;
@@ -29,9 +29,9 @@ class Solution {
         }
         return count;
     }
-}
+}*/
 
-/*class Solution {
+class Solution {
     public int countCollisions(String directions) {
         int n = directions.length();
         int left = 0;
@@ -52,4 +52,4 @@ class Solution {
         return ans;
         
     }
-}*/
+}
