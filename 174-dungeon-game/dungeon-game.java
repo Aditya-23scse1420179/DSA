@@ -1,37 +1,29 @@
 class Solution {
-    int m, n;
-    public int calculateMinimumHP(int[][] d) {
-        m = d.length;
-        n = d[0].length;
-        int left = 1;
-        int right = 4 * (int)1e7;   // upper bound
-        int ans = right;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            // memo: stores the best (max) health when entering a cell
-            int[][] seen = new int[m][n];
-            for (int[] row : seen) Arrays.fill(row, -1);
-            if (canSurvive(0, 0, mid, d, seen)) {
-                ans = mid;
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        }
-        return ans;
+    public int calculateMinimumHP(int[][] dungeon) {
+        int m = dungeon.length;
+        int n = dungeon[0].length;
+        Integer[][] dp = new Integer[m][n];//Intger use karo taki -1 na fill karna pade aur niche null se compare hoga.
+        // for (int[] row : dp)
+        //     Arrays.fill(row, -1);
+        return solve(0, 0, dungeon, dp);
     }
-    private boolean canSurvive(int i, int j, int health, int[][] d, int[][] seen) {
-        // Out of bounds
-        if (i >= m || j >= n) return false;
-        health += d[i][j];
-        if (health <= 0) return false;
-        // If we reach this cell with <= health seen before → pruning
-        if (seen[i][j] >= health) return false;
-        seen[i][j] = health;
-        // Reached destination
-        if (i == m - 1 && j == n - 1) return true;
-        // Try right or down
-        return canSurvive(i, j + 1, health, d, seen) 
-            || canSurvive(i + 1, j, health, d, seen);
+    public int solve(int i, int j, int[][] dungeon , Integer[][] dp) {
+        int m =dungeon.length;
+        int n = dungeon[0].length;
+        if (i >= m ||j >= n)
+            return Integer.MAX_VALUE;
+        if (i == m -1&&j ==n -1) {
+            if ((dungeon[i][j])<= 0)
+                return Math.abs(dungeon[i][j]) + 1;
+            else
+                return 1;
+        }
+        if (dp[i][j]!= null)
+            return dp[i][j];
+        int right = solve(i, j + 1, dungeon, dp);
+        int down = solve(i + 1, j, dungeon, dp);
+        int need = Math.min(right, down) - dungeon[i][j];
+        return dp[i][j] = need <= 0 ? 1 : need;
+
     }
 }
