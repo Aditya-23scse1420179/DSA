@@ -5,8 +5,9 @@ class Solution {
         if(amount<0)return (int)1e9;
         if(dp[idx][amount]!=null)return dp[idx][amount];
         int take = 1+helper(coins,idx,amount-coins[idx],dp);
+        int take1 = 1+helper(coins,idx+1,amount-coins[idx],dp);
         int nottake=helper(coins,idx+1,amount,dp);
-        dp[idx][amount]= Math.min(take,nottake);
+        dp[idx][amount]= Math.min(take,Math.min(nottake,take1));
         return dp[idx][amount];
     }
     public int coinChange(int[] coins, int amount) {
