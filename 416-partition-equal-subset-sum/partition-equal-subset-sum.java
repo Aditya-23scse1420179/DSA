@@ -14,20 +14,9 @@ class Solution {
         if(target<0)return false;
         if(target==0)return true;
         if(idx>=nums.length)return false;
-        if(dp[idx][target]!=null){
-            if(dp[idx][target]!=null){
-                return false;
-            }else{
-                return true;
-            }
-        }
+        if(dp[idx][target]!=null) return dp[idx][target];
         boolean res=helper(target-nums[idx],nums,idx+1,dp)||helper(target,nums,idx+1,dp);
-        if(res){
-            dp[idx][target]=true;
-        }else{
-            dp[idx][target]=false;
-        }
+        dp[idx][target]=res;
         return res;
-        
     }
 }
