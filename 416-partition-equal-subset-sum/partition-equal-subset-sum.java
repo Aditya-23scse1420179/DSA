@@ -15,7 +15,7 @@ class Solution {
         if(target==0)return true;
         if(idx>=nums.length)return false;
         if(dp[idx][target]!=null){
-            if(dp[idx][target]==false){
+            if(dp[idx][target]!=null){
                 return false;
             }else{
                 return true;
