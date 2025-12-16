@@ -24,6 +24,6 @@ class Solution {
             hours += pile / k;
             if (pile % k != 0) hours++;
         }
-        return hours <= h;
+        return hours<= h;
     }
 }
