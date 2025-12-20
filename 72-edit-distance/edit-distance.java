@@ -1,26 +1,20 @@
 class Solution {
     public int minDistance(String w1, String w2) {
-        int n =w1.length();
+        int n=w1.length();
         int m=w2.length();
-        int [][]dp=new int[n+1][m+1];
-        for(int i=1;i<=n;i++){
-            dp[i][0]=i;
+        Integer[][]dp=new Integer[n+1][m+1];
+        return helper(w1,w2,n-1,m-1,dp);
+    }
+    public static int helper(String w1,String w2,int i,int j,Integer[][]dp){
+        if(i<0)return j+1;
+        if(j<0)return i+1;
+        if(dp[i][j]!=null)return dp[i][j];
+        if(w1.charAt(i)==w2.charAt(j)){
+            return dp[i][j]= helper(w1,w2,i-1,j-1,dp);
         }
-        for(int j=1;j<=m;j++){
-            dp[0][j]=j;
-        }
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=m;j++){
-                if(w1.charAt(i-1)==w2.charAt(j-1)){
-                    dp[i][j]=dp[i-1][j-1];
-                }else{
-                    int insert=1+dp[i][j-1];
-                    int del=1+dp[i-1][j];
-                    int replace=1+dp[i-1][j-1];
-                    dp[i][j]=Math.min(insert,Math.min(del,replace));
-                }
-            }
-        }
-        return dp[n][m];
+        int take=helper(w1,w2,i,j-1,dp);
+        int skip=helper(w1,w2,i-1,j,dp);
+        int replace=helper(w1,w2,i-1,j-1,dp);
+        return dp[i][j]= 1+Math.min(take,Math.min(skip,replace));
     }
 }
