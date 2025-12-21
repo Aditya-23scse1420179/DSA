@@ -12,13 +12,12 @@ class Solution {
         }
         if(dp[i][j]!=null)return dp[i][j];
         int k=i+j;
-        boolean take1=false;
-        boolean take2=false;
+        boolean ans=false;
         if(i<s1.length()&&s1.charAt(i)==s3.charAt(k)){
-            take1=helper(s1,s2,s3,i+1,j,dp);
+            ans=ans||helper(s1,s2,s3,i+1,j,dp);
         }if(j<s2.length()&&s2.charAt(j)==s3.charAt(k)){
-            take2=helper(s1,s2,s3,i,j+1,dp);
+            ans=ans||helper(s1,s2,s3,i,j+1,dp);
         }
-        return dp[i][j]=take1||take2;
+        return dp[i][j]=ans;
     }
 }
