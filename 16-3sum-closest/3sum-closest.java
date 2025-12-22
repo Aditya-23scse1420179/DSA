@@ -11,7 +11,7 @@ class Solution {
                     result =sum;
                 }
                 if(sum==target)return target;
-                else if (sum <target)left++;
+                else if(sum <target)left++;
                 else right--;
             }
         }
