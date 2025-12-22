@@ -1,23 +1,17 @@
 class Solution {
-    int[] nums;
-    int n;
-    Integer[][] dp;
     public int lengthOfLIS(int[] nums) {
-        this.nums = nums;
-        this.n = nums.length;
-        dp = new Integer[n][n + 1]; 
-        return dfs(0, -1);
-    }
-    private int dfs(int i, int prevIndex) {
-        if (i == n) return 0;
-        if (dp[i][prevIndex + 1] != null)
-            return dp[i][prevIndex + 1];
-        // not take
-        int res = dfs(i + 1, prevIndex);
-        // take
-        if (prevIndex == -1 || nums[i] > nums[prevIndex]) {
-            res = Math.max(res, 1 + dfs(i + 1, i));
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        int maxi = 1;
+        for(int curr = 1; curr < n; curr++) {
+            for(int prev = 0; prev < curr; prev++) {
+                if(nums[curr] > nums[prev]) {
+                    dp[curr] = Math.max(dp[curr], dp[prev] + 1);
+                }
+            }
+            maxi = Math.max(maxi, dp[curr]);
         }
-        return dp[i][prevIndex + 1] = res;
+        return maxi;
     }
 }
