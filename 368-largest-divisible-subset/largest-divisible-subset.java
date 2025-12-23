@@ -1,7 +1,7 @@
 public class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
-        int n = nums.length;
-        if (n == 0) return new ArrayList<>();
+        int n=nums.length;
+        if (n==0) return new ArrayList<>();
         Arrays.sort(nums);
         int[] dp = new int[n];       
         int[] prev = new int[n];    
