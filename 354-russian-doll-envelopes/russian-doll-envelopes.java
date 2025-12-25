@@ -43,6 +43,5 @@ class Solution {
             }
         }
         return arr.size();
-       
     }
 }
