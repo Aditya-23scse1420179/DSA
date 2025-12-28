@@ -14,7 +14,7 @@ Some cooked me.
 Either way — it’s all here.
 
 👉 **Repo link**: https://github.com/Aditya-23scse1420179/DSA  
-👉 **LeetCode profile**: *(add your profile link if you want)](https://leetcode.com/u/Adityaup43/)*
+👉 **LeetCode profile**: *(https://leetcode.com/u/Adityaup43/)*
 
 ---
 
