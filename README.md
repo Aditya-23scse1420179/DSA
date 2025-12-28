@@ -27,8 +27,3 @@ Because growth shouldn’t be invisible.
 - 🌱 leaving a trail for anyone walking the same road  
 
 Think of this like a gym log — but for algorithms.
-
-
-
-## 📂 Repo Layout (low-key structured)
-
