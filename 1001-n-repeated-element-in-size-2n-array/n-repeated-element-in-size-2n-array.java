@@ -1,8 +1,9 @@
 class Solution {
     public int repeatedNTimes(int[] nums) {
-        HashSet<Integer>set=new HashSet<>();
+        HashMap<Integer,Integer>map=new HashMap<>();
         for(int x:nums){
-            if(!set.add(x))return x;
+            if(map.containsKey(x))return x;
+            map.put(x,1);
         }
         return -1;
     }
