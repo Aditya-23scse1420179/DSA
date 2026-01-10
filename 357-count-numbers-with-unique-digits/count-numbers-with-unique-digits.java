@@ -14,8 +14,8 @@ class Solution {
             if(lz==1&&digit==0){
                 res+=helper(s,idx+1,newtight,1,mask,dp);
             }else{
-                if((mask&(1<<digit))!=0) continue;
-                int newmask=mask|(1<<(digit));
+                if (((mask>>digit)&1)==1) continue;//yahandigit aya ya nahi and se chedk hoga 
+                int newmask=mask|(1<<(digit));//yahan uske niche jake or karke 1 karo 
                 res+=helper(s,idx+1,newtight,0,newmask,dp);
             }
         }
