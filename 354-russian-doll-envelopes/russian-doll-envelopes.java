@@ -27,8 +27,7 @@ class Solution {
         Arrays.sort(e,(a,b)->{
             if(a[0]!=b[0])return a[0]-b[0];
             else return b[1]-a[1];
-        }
-        );
+        });
         int nums[]=new int[e.length];
         for(int i=0;i<e.length;i++){
             nums[i]=e[i][1];
