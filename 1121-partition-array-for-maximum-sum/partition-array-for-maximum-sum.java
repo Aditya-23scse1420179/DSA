@@ -2,7 +2,7 @@ class Solution {
     int n;
     public int maxSumAfterPartitioning(int[] arr, int k) {
         n=arr.length;
-        Integer[]dp=new Integer[n+k];
+        Integer[]dp=new Integer[n+1];
         return helper(arr,0,k,dp);
 
     }public static int helper(int[]arr,int idx,int k,Integer[]dp){
