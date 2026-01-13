@@ -1,7 +1,6 @@
 class Solution {
-    int n;
     public int maxSumAfterPartitioning(int[] arr, int k) {
-        n=arr.length;
+    /*    n=arr.length;
         Integer[]dp=new Integer[n+1];
         return helper(arr,0,k,dp);
 
@@ -18,5 +17,21 @@ class Solution {
             maxA=Math.max(maxA,cost);
         }
         return dp[idx]=maxA;
+    }*/
+    int n=arr.length;
+    int []dp=new int[n+1];
+    for(int idx=n-1;idx>=0;idx--){
+        int max=-(int)1e9;
+        int maxA=-(int)1e9;
+        int len=0;
+        for(int i=idx;i<Math.min(arr.length,idx+k);i++){
+            len++;
+            max=Math.max(arr[i],max);
+            int cost=max*len+dp[i+1];
+            maxA=Math.max(maxA,cost);
+        }
+        dp[idx]=maxA;
+    }
+    return dp[0];
     }
 }
