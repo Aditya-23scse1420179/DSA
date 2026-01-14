@@ -15,14 +15,15 @@ class Solution {
         int res=0;
         for(int digit =lb;digit<=ub;digit++){
             int newtight=(tight==1&&digit==ub)?1:0;
-            if(lz==1&&digit==0){
-                res+=solve(s,idx+1,newtight,repeated,mask,lz,dp);
+            int nlz=(lz==1&&digit==0)?1:0;
+            if(nlz==1){
+                res+=solve(s,idx+1,newtight,repeated,mask,nlz,dp);
             }else{
                 int isUsed =1&(mask>>digit);
                 int newReapeted=(repeated==1||isUsed==1)?1:0;
                 int newMask=(1<<(digit)|mask);
-                res+=solve(s,idx+1,newtight,newReapeted,newMask,0,dp);
-            }     
+                res+=solve(s,idx+1,newtight,newReapeted,newMask,nlz,dp);
+            }    
         }
         return dp[idx][tight][repeated][mask][lz]=res;
     }
