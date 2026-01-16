@@ -7,7 +7,7 @@ class Solution {
         for(int i=1;i<=nums.length;i++){
             arr[i]=nums[i-1];
         }
-        Integer[][]dp = new Integer [arr.length+1][arr.length+1];
+        Integer[][]dp = new Integer [arr.length][arr.length];
         return helper(arr,1,arr.length-2,dp);
     }public static int helper(int[]arr,int i,int j,Integer[][]dp){
         if(i>j)return 0;
