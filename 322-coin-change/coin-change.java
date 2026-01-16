@@ -2,7 +2,7 @@ class Solution {
     public int coinChange(int[] coins, int amount) {
         Integer[][]dp=new Integer[coins.length+1][amount+1];
         int ans= helper(0,amount,coins,dp);
-        return ans>=(int)1e9?-1:ans;
+        return ans>=100000+7?-1:ans;
     }public static int helper(int i,int amount,int[] coins,Integer[][]dp){
         if(i==coins.length)return (int)1e9;
         if(amount<0)return (int)1e9;
