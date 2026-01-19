@@ -1,25 +1,24 @@
 class Solution {
-    public int calculateMinimumHP(int[][] power) {
-        int m = power.length;
-        int n = power[0].length;
-        int [][] dp = new int[m][n];
-        for(int i = m-1; i >= 0; i--){
-            for(int j = n-1; j >= 0; j--){
-                if(i == m-1 && j == n-1){
-                    if(power[i][j] > 0){
-                        dp[i][j] = 1;
-                    } else {
-                        dp[i][j] = Math.abs(power[i][j]) + 1;
-                    }
-                }
-                else{
-                    int down =(i+1>= m) ? (int)1e9 :dp[i+1][j];
-                    int right = (j+1>=n) ?(int)1e9: dp[i][j+1];
-                    int need = Math.min(down, right) - power[i][j];
-                    dp[i][j] =(need<= 0) ? 1 : need;
-                }
-            }
+    public int calculateMinimumHP(int[][] dungeon) {
+        int m=dungeon.length;
+        int n=dungeon[0].length;
+        Integer [][]dp=new Integer [m][n];
+        return helper(dungeon,0,0,dp);
+    }
+    public int helper (int[][]dungeon,int r,int c,Integer[][]dp){
+        int m=dungeon.length;
+        int n=dungeon[0].length;
+        if(r>=m||c>=n)return Integer.MAX_VALUE;
+        if (r == m -1 &&c ==n -1 ) {
+            if ((dungeon[r][c])<= 0)
+                return Math.abs(dungeon[r][c]) + 1;
+            else
+                return 1;
         }
-        return dp[0][0];
+        if(dp[r][c]!=null)return dp[r][c];
+        int right=helper(dungeon,r,c+1,dp);
+        int down= helper(dungeon,r+1,c,dp);
+        int need= Math.min(right,down)-dungeon[r][c];
+        return dp[r][c]=need<=0?1:need;
     }
 }
