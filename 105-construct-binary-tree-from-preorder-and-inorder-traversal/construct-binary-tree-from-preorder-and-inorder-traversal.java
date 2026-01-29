@@ -22,7 +22,7 @@ class Solution {
         }
         return helper(preorder,0,inorder.length-1,map);
     }
-    public TreeNode helper(int []preorder,int start,int end ,HashMap<Integer,Integer>map){
+    private TreeNode helper(int []preorder,int start,int end ,HashMap<Integer,Integer>map){
         if(start>end)return null;
         int rootVal=preorder[index++];
         TreeNode node=new TreeNode(rootVal);
