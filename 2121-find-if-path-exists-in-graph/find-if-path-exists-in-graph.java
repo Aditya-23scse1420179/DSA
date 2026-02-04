@@ -10,20 +10,16 @@ class Solution {
             list.get(u).add(v);
             list.get(v).add(u);
         }
-        Queue<Integer>q=new LinkedList<>();
-        boolean []visit=new boolean [n];
-        visit[source]=true;
-        q.offer(source);
-        while(!q.isEmpty()){
-            int node=q.remove();
-            for(int a:list.get(node)){
-                if(visit[a]==false){
-                    visit[a]=true;
-                    q.offer(a);
-                }
-            }
-        }
+        boolean []visit=new boolean[n];
+        dfs(list,source,visit);
         if(visit[destination]==true)return true;
         return false;
+    }public void dfs(ArrayList<ArrayList<Integer>>list,int source,boolean []visit){
+        visit[source]=true;
+        for(int a:list.get(source)){
+            if(visit[a]==false){
+                dfs(list,a,visit);
+            }
+        }
     }
 }
