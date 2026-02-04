@@ -12,18 +12,26 @@ class Solution {
             list.get(v).add(u);
         }
         boolean []visit=new boolean [n];
-        Queue<Integer>q=new LinkedList<>();
-        visit[source]=true;
-        q.offer(source);
-        while(!q.isEmpty()){
-            int node=q.remove();
-            for(int i:list.get(node)){
-                if(visit[i]==false){
-                    visit[i]=true;
-                    q.offer(i);
-                }
+        // Queue<Integer>q=new LinkedList<>();
+        // visit[source]=true;
+        // q.offer(source);
+        // while(!q.isEmpty()){
+        //     int node=q.remove();
+        //     for(int i:list.get(node)){
+        //         if(visit[i]==false){
+        //             visit[i]=true;
+        //             q.offer(i);
+        //         }
+        //     }
+        // }
+        dfs(list,source,visit);
+        return visit[destination];
+    }public void dfs(List<List<Integer>>list,int src,boolean[]visit){
+        visit[src]=true;
+        for(int a:list.get(src)){
+            if(visit[a]==false){
+                dfs(list,a,visit);
             }
         }
-        return visit[destination];
     }
 }
