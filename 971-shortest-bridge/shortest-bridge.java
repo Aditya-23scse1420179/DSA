@@ -45,7 +45,7 @@ class Solution {
             }
             level++;
         }
-        return-1;
+        return level;
     }public void dfs(int r,int c,Queue<pair>q,int[][]grid){
         if(r<0||c<0||r>=rl||c>=cl||visit[r][c]==true||grid[r][c]==0)return;
         visit[r][c]=true;
