@@ -8,12 +8,14 @@ class Solution {
             return Long.MIN_VALUE / 2;
         }long ans=Long.MIN_VALUE / 2;
         if(dp[i][j][k]!=null)return dp[i][j][k];
-        ans=Math.max(ans,helper(i+1,j+1,nums1,nums2,k,dp));
-        ans=Math.max(ans,helper(i+1,j,nums1,nums2,k,dp));
-        ans=Math.max(ans,helper(i,j+1,nums1,nums2,k,dp));
+        long ans1=helper(i+1,j+1,nums1,nums2,k,dp);
+        long ans2=helper(i+1,j,nums1,nums2,k,dp);
+        long ans3=helper(i,j+1,nums1,nums2,k,dp);
+        long ans4=Long.MIN_VALUE/2;
         if(k>0){
-            ans=Math.max(ans,(long)nums1[i]*nums2[j]+helper(i+1,j+1,nums1,nums2,k-1,dp));
-        }
+            ans4=(long)nums1[i]*nums2[j]+helper(i+1,j+1,nums1,nums2,k-1,dp);
+        }ans=Math.max(Math.max(ans1,ans2),Math.max(ans3,ans4));
+        
         return dp[i][j][k]= ans;
     }
 }
