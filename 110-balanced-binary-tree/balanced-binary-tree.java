@@ -14,13 +14,16 @@
  * }
  */
 class Solution {
+    static boolean balanced;
     public boolean isBalanced(TreeNode root) {
-        return helper(root)!=-1;
+        balanced=true;
+        helper(root);
+        return balanced;
     }public int helper(TreeNode root){
         if(root==null)return 0;
         int lefth=helper(root.left);
         int righth=helper(root.right);
-        if(lefth==-1||righth==-1||Math.abs(lefth-righth)>1)return -1;
+        if(Math.abs(lefth-righth)>1)balanced= false;;
         return Math.max(lefth,righth)+1;
     }
 }
