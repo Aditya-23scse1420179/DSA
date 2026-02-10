@@ -1,9 +1,8 @@
 class Solution {
     static int[]dr={-1,1,0,0};
     static int[]dc={0,0,-1,1};
-    static int rl;
-    static int cl;
-    boolean[][]visit;
+    static int m;
+    static int n;
     class pair{
         int row;
         int col;
@@ -13,16 +12,16 @@ class Solution {
         }
     }
     public int shortestBridge(int[][] grid) {
-        rl=grid.length;
-        cl=grid[0].length;
-        boolean found =false;
-        visit=new boolean[rl][cl];
+        n=grid.length;
+        m=grid[0].length;
+        boolean[][]visit=new boolean[n][m];
         Queue<pair>q=new LinkedList<>();
-        for(int i=0;i<rl;i++){
+        boolean found =false;
+        for(int i=0;i<n;i++){
             if(found)break;
-            for(int j=0;j<cl;j++){
+            for(int j=0;j<m;j++){
                 if(grid[i][j]==1){
-                    dfs(i,j,q,grid);
+                    dfs(i,j,visit,grid,q);
                     found=true;
                     break;
                 }
@@ -31,27 +30,30 @@ class Solution {
         while(!q.isEmpty()){
             int size=q.size();
             while(size-->0){
-                pair curr=q.poll();
+                pair curr=q.remove();
                 int r=curr.row;
                 int c=curr.col;
                 for(int i=0;i<4;i++){
-                    int nrow=r+dr[i];
-                    int ncol=c+dc[i];
-                    if(nrow<0||ncol<0||nrow>=rl||ncol>=cl||visit[nrow][ncol])continue;
-                    if(grid[nrow][ncol]==1)return level;
-                    visit[nrow][ncol]=true;
-                    q.offer(new pair(nrow,ncol));
+                    int nr=r+dr[i];
+                    int nc=c+dc[i];
+                    if(nr<0||nc<0||nr>=n||nc>=m||visit[nr][nc])continue;
+                    if(grid[nr][nc]==1)return level;
+                    visit[nr][nc]=true;
+                    q.offer(new pair(nr,nc));
                 }
-            }
-            level++;
+            }level++;
+
         }
         return level;
-    }public void dfs(int r,int c,Queue<pair>q,int[][]grid){
-        if(r<0||c<0||r>=rl||c>=cl||visit[r][c]==true||grid[r][c]==0)return;
+    }public void dfs(int r,int c,boolean[][]visit,int[][]grid,Queue<pair>q){
+        if(r<0||c<0||r>=n||c>=m||visit[r][c]||grid[r][c]==0)return;
         visit[r][c]=true;
         q.offer(new pair(r,c));
         for(int i=0;i<4;i++){
-            dfs(r+dr[i],c+dc[i],q,grid);
+            int nr=r+dr[i];
+            int nc=c+dc[i];
+            dfs(nr,nc,visit,grid,q);
         }
+
     }
 }
