@@ -16,17 +16,8 @@ class Solution {
         m=grid[0].length;
         boolean[][]visit=new boolean[n][m];
         Queue<pair>q=new LinkedList<>();
-        boolean found =false;
-        for(int i=0;i<n;i++){
-            if(found)break;
-            for(int j=0;j<m;j++){
-                if(grid[i][j]==1){
-                    dfs(i,j,visit,grid,q);
-                    found=true;
-                    break;
-                }
-            }
-        }int level=0;
+        dfsisland(grid,q,visit);
+        int level=0;
         while(!q.isEmpty()){
             int size=q.size();
             while(size-->0){
@@ -54,6 +45,14 @@ class Solution {
             int nc=c+dc[i];
             dfs(nr,nc,visit,grid,q);
         }
-
+    }public void dfsisland(int[][]grid,Queue<pair>q,boolean[][]visit){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                    dfs(i,j,visit,grid,q);
+                    return;
+                }
+            }
+        }
     }
 }
