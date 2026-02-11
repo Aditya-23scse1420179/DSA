@@ -26,11 +26,10 @@ class Solution {
         }
         return component;
     }public void dfs(int r,int c,boolean[][]visit,char[][]grid){
-        if(r>=0&&c>=0&&r<rl&&c<cl&&!visit[r][c]&&grid[r][c]=='1'){
-            visit[r][c]=true;
-            for(int k=0;k<4;k++){
-                dfs(r+dr[k],c+dc[k],visit,grid);
-            }
+        if(r<0||c<0||r>=rl||c>=cl||visit[r][c]||grid[r][c]=='0')return ;
+        visit[r][c]=true;
+        for(int k=0;k<4;k++){
+            dfs(r+dr[k],c+dc[k],visit,grid);
         }
     }
 }
