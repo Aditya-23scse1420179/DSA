@@ -12,7 +12,7 @@ class Solution {
         for(String word:wordList){
             set.add(word);
         }set.remove(beginWord);
-        if(!set.contains(endWord)){
+        if(set.contains(endWord)==false){
             return 0;
         }
         Queue<pair>q=new LinkedList<>();
