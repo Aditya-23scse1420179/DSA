@@ -42,6 +42,6 @@ class Solution {
                 }
             }
         }
-        return ways[n-1];
+        return(int)ways[n-1];
     }
 }
