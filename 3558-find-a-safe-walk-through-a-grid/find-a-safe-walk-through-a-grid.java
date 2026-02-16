@@ -30,12 +30,12 @@ class Solution {
             for(int i=0;i<4;i++){
                 int nr=r+dr[i];
                 int nc=c+dc[i];
-                if(nr>=0&&nr<n&&nc>=0&&nc<m){
+                if(nr<0||nr>=n||nc<0||nc>=m)continue;
                     if(w-grid.get(nr).get(nc)>=0&&dist[nr][nc]<w-grid.get(nr).get(nc)){
                         dist[nr][nc]=w-grid.get(nr).get(nc);
                         q.offer(new pair(nr,nc,dist[nr][nc]));
                     }
-                }
+                
             }
         }
         return dist[n-1][m-1]>=1?true:false;
