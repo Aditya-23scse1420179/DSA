@@ -4,9 +4,11 @@ class Solution {
     public class pair{
         int row;
         int col;
-        public pair(int row,int col){
+        int dist;
+        public pair(int row,int col,int dist){
             this.row=row;
             this.col=col;
+            this.dist=dist;
         }
     }
     public int minimumObstacles(int[][] grid) {
@@ -18,18 +20,20 @@ class Solution {
         }
         dist[0][0]=0;
         Queue<pair>q=new LinkedList<>();
-        q.offer(new pair(0,0));
+        q.offer(new pair(0,0,0));
         while(!q.isEmpty()){
             pair curr=q.remove();
             int r=curr.row;
             int c=curr.col;
+            int w=curr.dist;
+            if(w>dist[r][c])continue;
             for(int i=0;i<4;i++){
                 int nr=r+dr[i];
                 int nc=c+dc[i];
                 if(nr<0||nr>=n||nc<0||nc>=m)continue;
-                if(dist[nr][nc]>dist[r][c]+grid[nr][nc]){
-                    dist[nr][nc]=dist[r][c]+grid[nr][nc];
-                    q.offer(new pair(nr,nc));
+                if(dist[nr][nc]>w+grid[nr][nc]){
+                    dist[nr][nc]=w+grid[nr][nc];
+                    q.offer(new pair(nr,nc,dist[nr][nc]));
                 }
             }
         }
