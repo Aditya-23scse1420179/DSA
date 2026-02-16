@@ -1,7 +1,7 @@
 class Solution {
     static int []dr={-1,1,0,0};
-    static int []dc={0,0,-1,1};
-    public class pair{
+    static int[]dc={0,0,-1,1};
+    static class pair {
         int row;
         int col;
         int dist;
@@ -13,31 +13,31 @@ class Solution {
     }
     public boolean findSafeWalk(List<List<Integer>> grid, int health) {
         int n=grid.size();
-        int m=grid.get(0).size();
-        int[][]distance=new int[n][m];
-        for(int []a:distance){
-            Arrays.fill(a,-1);
+        int m=grid.get(0).size();//arraylist me aise hi lete hain 
+        int [][]dist=new int[n][m];
+        for(int[]a:dist){
+            Arrays.fill(a,-(int)1e9);
         }
-        int starth=health-grid.get(0).get(0);
-        PriorityQueue<pair>q=new PriorityQueue<>((a,b)->Integer.compare(b.dist,a.dist));
-        q.offer(new pair(0,0,starth));
+        int sh=health-grid.get(0).get(0);
+        dist[0][0]=sh;
+        Queue<pair>q=new LinkedList<>();
+        q.offer(new pair(0,0,sh));
         while(!q.isEmpty()){
             pair curr=q.remove();
             int r=curr.row;
             int c=curr.col;
             int w=curr.dist;
-            for (int i=0;i<4;i++) {
+            for(int i=0;i<4;i++){
                 int nr=r+dr[i];
                 int nc=c+dc[i];
-                if (nr>=0&&nr<n&&nc>=0&& nc<m) {
-                    int newHealth=w-grid.get(nr).get(nc);
-                    if (newHealth >=1&&newHealth>distance[nr][nc]) {
-                        distance[nr][nc]=newHealth;
-                        q.offer(new pair(nr,nc,newHealth));
+                if(nr>=0&&nr<n&&nc>=0&&nc<m){
+                    if(w-grid.get(nr).get(nc)>=0&&dist[nr][nc]<w-grid.get(nr).get(nc)){
+                        dist[nr][nc]=w-grid.get(nr).get(nc);
+                        q.offer(new pair(nr,nc,dist[nr][nc]));
                     }
                 }
             }
         }
-        return distance[n-1][m-1]>=1;
+        return dist[n-1][m-1]>=1?true:false;
     }
 }
