@@ -34,7 +34,7 @@ class Solution {
                     if(grid[nr][nc]==0&&!visit[nr][nc][w]){
                         q.offer(new pair(nr,nc,w));
                         visit[nr][nc][w]=true;
-                    }else if(grid[nr][nc]==1&&w>=1&&!visit[nr][nc][w-1]){
+                    }else if(grid[nr][nc]==1&&w>=1&&!visit[nr][nc][w-1]){//-1 lagega kyunki next cell me jayenge ak k kam ho chuka hoga 1 ki vagah se
                         q.offer(new pair(nr,nc,w-1));
                         visit[nr][nc][w-1]=true;
                     }
