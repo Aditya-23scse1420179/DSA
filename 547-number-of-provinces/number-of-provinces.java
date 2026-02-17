@@ -10,7 +10,7 @@ class Solution {
             size[i]=1;
         }
         for(int i=0;i<n;i++){
-            for(int j=0;j<edges[0].length;j++){
+            for(int j=i;j<edges[0].length;j++){
                 if(edges[i][j]==1){
                     unionsize(i,j);
                 }
