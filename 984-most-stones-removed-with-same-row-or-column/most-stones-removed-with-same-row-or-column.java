@@ -8,8 +8,8 @@ class Solution {
         for(int i=0;i<n;i++){
             parent[i]=i;
         }int comp=n;
-        for(int i=0;i<n;i++){
-            for(int j=1;j<n;j++){
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
                 if(stones[i][0]==stones[j][0]||
                 stones[i][1]==stones[j][1]){
                     if(unionrank(i,j)){
