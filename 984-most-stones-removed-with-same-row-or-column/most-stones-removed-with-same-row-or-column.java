@@ -7,18 +7,15 @@ class Solution {
         rank=new int[n];
         for(int i=0;i<n;i++){
             parent[i]=i;
-        }
+        }int comp=n;
         for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
+            for(int j=1;j<n;j++){
                 if(stones[i][0]==stones[j][0]||
                 stones[i][1]==stones[j][1]){
-                    unionrank(i,j);
+                    if(unionrank(i,j)){
+                        comp--;
+                    }
                 }
-            }
-        }int comp=0;
-        for(int i=0;i<n;i++){
-            if(find(i)==i){
-                comp++;
             }
         }
         return n-comp;
