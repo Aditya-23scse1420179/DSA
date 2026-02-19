@@ -7,12 +7,12 @@ class RLEIterator {
     }
     
     public int next(int n) {
-        for(int i=idx;i<encoding.length;i+=2){
-            if(n<=encoding[i]){
-                encoding[i]-=n;
-                return encoding[i+1];
+        while(idx<encoding.length){
+            if(n<=encoding[idx]){
+                encoding[idx]-=n;
+                return encoding[idx+1];
             }else{
-                n-=encoding[i];
+                n-=encoding[idx];
                 idx+=2;
             }
         }
