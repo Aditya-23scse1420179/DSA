@@ -1,22 +1,32 @@
 class Solution {
     static int[]dr={-1,1,0,0};
     static int[]dc={0,0,-1,1};
-    static int m;
-    static int n;
     class pair{
         int row;
         int col;
         public pair(int row,int col){
             this.row=row;
-            this.col=col;
+            this.col=col;            
         }
     }
+    int rl;
+    int cl;
     public int shortestBridge(int[][] grid) {
-        n=grid.length;
-        m=grid[0].length;
-        boolean[][]visit=new boolean[n][m];
+        rl=grid.length;
+        cl=grid[0].length;
         Queue<pair>q=new LinkedList<>();
-        dfsisland(grid,q,visit);
+        boolean[][]visit=new boolean[rl][cl];
+        boolean found=false;
+        for(int i=0;i<rl;i++){
+            if(found)break;
+            for(int j=0;j<cl;j++){
+                if(grid[i][j]==1){
+                    dfs(i,j,visit,grid,q);
+                    found=true;
+                    break;
+                }
+            }
+        }
         int level=0;
         while(!q.isEmpty()){
             int size=q.size();
@@ -27,32 +37,24 @@ class Solution {
                 for(int i=0;i<4;i++){
                     int nr=r+dr[i];
                     int nc=c+dc[i];
-                    if(nr<0||nc<0||nr>=n||nc>=m||visit[nr][nc])continue;
+                    if(nr<0||nr>=rl||nc<0||nc>=cl||visit[nr][nc]==true)continue;
                     if(grid[nr][nc]==1)return level;
                     visit[nr][nc]=true;
                     q.offer(new pair(nr,nc));
                 }
-            }level++;
-
+            }
+            level++;
         }
         return level;
+        
     }public void dfs(int r,int c,boolean[][]visit,int[][]grid,Queue<pair>q){
-        if(r<0||c<0||r>=n||c>=m||visit[r][c]||grid[r][c]==0)return;
+        if(r<0||r>=rl||c<0||c>=cl||visit[r][c]==true||grid[r][c]==0)return;
         visit[r][c]=true;
         q.offer(new pair(r,c));
         for(int i=0;i<4;i++){
             int nr=r+dr[i];
             int nc=c+dc[i];
             dfs(nr,nc,visit,grid,q);
-        }
-    }public void dfsisland(int[][]grid,Queue<pair>q,boolean[][]visit){
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]==1){
-                    dfs(i,j,visit,grid,q);
-                    return;
-                }
-            }
         }
     }
 }
