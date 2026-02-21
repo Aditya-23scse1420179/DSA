@@ -1,37 +1,33 @@
 class Solution {
     static class pair{
-        String str;
+        String s;
         int level;
-        public pair(String str,int level){
-            this.str=str;
+        public pair(String s,int level){
+            this.s=s;
             this.level=level;
         }
     }
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Queue<pair>q=new LinkedList<>();
         HashSet<String>set=new HashSet<>();
         for(String s:wordList){
             set.add(s);
-        }set.remove(beginWord);
-        if(!set.contains(endWord)){
-            return 0;
-        }
-        Queue<pair>q=new LinkedList<>();
+        }if(!set.contains(endWord))return 0;
+        set.remove(beginWord);
         q.offer(new pair(beginWord,1));
         while(!q.isEmpty()){
             pair curr=q.remove();
-            String s=curr.str;
-            int step=curr.level;
-            if(s.equals(endWord)){
-                return step;
-            }int len=s.length();
-            for(int i=0;i<len;i++){
-                char[]arr=s.toCharArray();
+            String a=curr.s;
+            int l=curr.level;
+            if(a.equals(endWord))return l;
+            for(int i=0;i<a.length();i++){
+                char[]arr=a.toCharArray();
                 for(char ch='a';ch<='z';ch++){
                     if(arr[i]==ch)continue;
                     arr[i]=ch;
                     String replace=new String(arr);
                     if(set.contains(replace)){
-                        q.offer(new pair(replace,step+1));
+                        q.offer(new pair(replace,l+1));
                         set.remove(replace);
                     }
                 }
@@ -39,4 +35,4 @@ class Solution {
         }
         return 0;
     }
-}
+} 
