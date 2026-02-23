@@ -14,19 +14,22 @@
  * }
  */
 class Solution {
-    TreeNode curr=null;
+    int ans=0;
     public int findBottomLeftValue(TreeNode root) {
         Queue<TreeNode>q=new LinkedList<>();
         q.offer(root);
         while(!q.isEmpty()){
             int size=q.size();
-            while(size-->0){
-                curr=q.remove();
-                if(curr.right!=null)q.offer(curr.right);
+            for(int i=0;i<size;i++){
+                TreeNode curr=q.remove();
+                if(i==0){
+                    ans=curr.val;
+                }
                 if(curr.left!=null)q.offer(curr.left);
+                if(curr.right!=null)q.offer(curr.right);
             }
         }
-        return curr.val;
+        return ans;
 
     }
 }
