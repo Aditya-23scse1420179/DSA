@@ -9,50 +9,42 @@
  */
 class Solution {
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        ArrayList<Integer>list=new ArrayList<>();
+        ArrayList<Integer>ans=new ArrayList<>();
         HashMap<TreeNode,TreeNode>map=new HashMap<>();
-        buildParentMap(root,null,map);
+        build(root,null,map);
         Queue<TreeNode>q=new LinkedList<>();
-        Set<TreeNode>visit=new HashSet<>();
-        int distance=0;
-        visit.add(target);
+        Set<TreeNode>set=new HashSet<>();
+        set.add(target);
         q.offer(target);
-        //level order
-        while(!q.isEmpty())
-        {
+        int level=0;
+        while(!q.isEmpty()){
             int size=q.size();
-            if(distance==k)break;
-            while(size-->0)
-            {
+            if(level==k)break;
+            while(size-->0){
                 TreeNode curr=q.remove();
-                if(curr.left!=null && !visit.contains(curr.left))
-                {
+                if(curr.left!=null&&!set.contains(curr.left)){
                     q.offer(curr.left);
-                    visit.add(curr.left);
-                }
-                if(curr.right!=null && !visit.contains(curr.right))
-                {
+                    set.add(curr.left);
+                }if(curr.right!=null&&!set.contains(curr.right)){
                     q.offer(curr.right);
-                    visit.add(curr.right);
+                    set.add(curr.right);
                 }
                 TreeNode parent=map.get(curr);
-                if(parent!=null && !visit.contains(parent))
-                {
+                if(parent!=null&&!set.contains(parent)){
                     q.offer(parent);
-                    visit.add(parent);
+                    set.add(parent);
                 }
             }
-            distance++;
-            
+            level++;
         }
         while(!q.isEmpty()){
-            list.add(q.poll().val);
+            ans.add(q.remove().val);
         }
-        return list;
-    }public void buildParentMap(TreeNode node,TreeNode parent,HashMap<TreeNode,TreeNode>map){
+        return ans;
+    }public void build(TreeNode node,TreeNode parent,HashMap<TreeNode,TreeNode>map){
         if(node==null)return;
         map.put(node,parent);
-        buildParentMap(node.left,node,map);
-        buildParentMap(node.right,node,map);
+        build(node.left,node,map);
+        build(node.right,node,map);
     }
 }
