@@ -24,11 +24,11 @@ class Solution {
         return build(postorder,0,inorder.length-1,map);
     }public TreeNode build(int[]postorder,int start,int end,HashMap<Integer,Integer>map){
         if(start>end)return null;
-        int rootval=postorder[idx--];
-        TreeNode root=new TreeNode(rootval);
-        int preidx=map.get(rootval);
-        root.right=build(postorder,preidx+1,end,map);
-        root.left=build(postorder,start,preidx-1,map);
-        return root;
+        int root=postorder[idx--];
+        TreeNode node=new TreeNode(root);
+        int post=map.get(root);
+        node.right=build(postorder,post+1,end,map);
+        node.left=build(postorder,start,post-1,map);
+        return node;
     }
 }
