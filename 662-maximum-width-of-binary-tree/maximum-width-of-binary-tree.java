@@ -26,7 +26,7 @@ class Solution {
     }
     public int widthOfBinaryTree(TreeNode root) {
         int max=0;
-        Deque<pair>q=new ArrayDeque<>();//doubly ended queue
+        Deque<pair>q=new ArrayDeque<>();//doubly ended queue in normal queue first last nahi nikal sakte aur linkedlist memory heavy hota hai 
         q.offer(new pair(root,0));
         while(!q.isEmpty()){
             int size=q.size();
