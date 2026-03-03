@@ -16,7 +16,8 @@
 class Solution {
     class pair{
         TreeNode node;
-        int row,col;
+        int row;
+        int col;
         public pair(TreeNode node,int row,int col){
             this.node=node;
             this.row=row;
@@ -25,32 +26,34 @@ class Solution {
     }
     public List<List<Integer>> verticalTraversal(TreeNode root) {
         List<List<Integer>>ans=new ArrayList<>();
-        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>>map=new TreeMap<>();
         Queue<pair>q=new LinkedList<>();
+        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>>map=new TreeMap<>();
         q.offer(new pair(root,0,0));
         while(!q.isEmpty()){
-            pair u=q.remove();
-            int r=u.row;
-            int c=u.col;
-            TreeNode n=u.node;
+            pair curr=q.remove();
+            TreeNode n=curr.node;
+            int r=curr.row;
+            int c=curr.col;
             map.putIfAbsent(c,new TreeMap<>());
             map.get(c).putIfAbsent(r,new PriorityQueue<>());
             map.get(c).get(r).offer(n.val);
             if(n.left!=null){
                 q.offer(new pair(n.left,r+1,c-1));
-            }if(n.right!=null){
+            }
+            if(n.right!=null){
                 q.offer(new pair(n.right,r+1,c+1));
             }
         }
-        for(TreeMap<Integer,PriorityQueue<Integer>>rows:map.values()){
-            ArrayList<Integer>temp=new ArrayList<>();
-            for(PriorityQueue<Integer>pq:rows.values()){
-                while(!pq.isEmpty()){
-                    temp.add(pq.poll());
+            for(TreeMap<Integer,PriorityQueue<Integer>>m:map.values()){
+                ArrayList<Integer>list=new ArrayList<>();
+                for(PriorityQueue<Integer>pq:m.values()){
+                    while(!pq.isEmpty()){
+                        list.add(pq.poll());
+                    }
                 }
+                ans.add(list);
             }
-            ans.add(temp);
-        }
-        return ans;
+            return ans;
+        
     }
 }
