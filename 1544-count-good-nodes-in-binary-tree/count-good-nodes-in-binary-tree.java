@@ -20,8 +20,9 @@ class Solution {
         if(node==null)return 0;
         int count=0;
         if(node.val>=max)count++;
-        int left=helper(node.left,Math.max(max,node.val));
-        int right=helper(node.right,Math.max(max,node.val));
-        return count +left+right;
+        max=Math.max(node.val,max);
+        count+=helper(node.left,max);
+        count+=helper(node.right,max);
+        return count;
     }
 }
