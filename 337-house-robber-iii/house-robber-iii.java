@@ -17,7 +17,7 @@ class Solution {
     public int rob(TreeNode root) {
         int[]choices=helper(root);
         return Math.max(choices[0],choices[1]);
-    }private int[]helper(TreeNode node){
+    }public int[] helper(TreeNode node){
         if(node==null)return new int[2];
         int[]leftchoice=helper(node.left);
         int[]rightchoice=helper(node.right);
