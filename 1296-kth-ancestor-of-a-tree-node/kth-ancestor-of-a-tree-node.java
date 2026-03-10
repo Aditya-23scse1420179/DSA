@@ -22,7 +22,7 @@ class TreeAncestor {
     
     public int getKthAncestor(int node, int k) {
         for(int i=log-1;i>=0;i--){
-            if((k&(1<<i))!=-0){
+            if((k&(1<<i))!=0){
                 node=up[node][i];
                 if(node==-1)return -1;
             }
