@@ -35,6 +35,7 @@ class Solution {
             int s=curr.stop;
             if(nn==dst)return d;
             if(s>k)continue;
+            // if(dist[nn][s+1]<d)continue;
             for(pair a:list.get(nn)){
                 int u=a.node;
                 int D=a.dist;
