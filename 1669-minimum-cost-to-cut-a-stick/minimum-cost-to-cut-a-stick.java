@@ -1,16 +1,16 @@
 class Solution {
     public int minCost(int n, int[] cuts) {
         int m=cuts.length;
-        int[]ncut=new int[m+2];
+        int []ncut=new int[m+2];
         ncut[0]=0;
         ncut[ncut.length-1]=n;
         Arrays.sort(cuts);
-        for(int i=1;i<=cuts.length;i++){
+        for(int i=1;i<=m;i++){
             ncut[i]=cuts[i-1];
         }
-        Integer[][]dp= new Integer[m+1][m+1];
-        return helper(1,cuts.length,ncut,dp);
-    }public static int helper(int i,int j,int[]ncut,Integer[][]dp){
+        Integer[][]dp=new Integer[ncut.length][ncut.length];
+        return helper(1,m,ncut,dp);
+    }public int helper(int i,int j,int[]ncut,Integer[][]dp){
         if(i>j)return 0;
         int min=(int)1e9;
         if(dp[i][j]!=null)return dp[i][j];
