@@ -1,22 +1,22 @@
 class Solution {
     public int maxCoins(int[] nums) {
         int n=nums.length;
-        int[]arr= new int[n+2];
-        arr[0]=1;
-        arr[arr.length-1]=1;
-        for(int i=1;i<=nums.length;i++){
-            arr[i]=nums[i-1];
+        int[]nn=new int[n+2];
+        nn[0]=1;
+        nn[nn.length-1]=1;
+        for(int i=1;i<=n;i++){
+            nn[i]=nums[i-1];
         }
-        Integer[][]dp = new Integer [arr.length][arr.length];
-        return helper(arr,1,arr.length-2,dp);
-    }public static int helper(int[]arr,int i,int j,Integer[][]dp){
+        Integer[][]dp=new Integer[n+2][n+2];
+        return helper(1,n,nn,dp);
+    }public int helper(int i,int j,int[]nn,Integer[][]dp){
         if(i>j)return 0;
-        int max=-(int)1e9;
         if(dp[i][j]!=null)return dp[i][j];
+        int max=-(int)1e9;
         for(int idx=i;idx<=j;idx++){
-            int cost=arr[i-1]*arr[idx]*arr[j+1]+helper(arr,i,idx-1,dp)+helper(arr,idx+1,j,dp);
-            max=Math.max(max,cost);
+            int coin=nn[i-1]*nn[idx]*nn[j+1]+helper(i,idx-1,nn,dp)+helper(idx+1,j,nn,dp);
+            max=Math.max(max,coin);
         }
-        return dp[i][j]= max;
+        return dp[i][j]=max;
     }
 }
