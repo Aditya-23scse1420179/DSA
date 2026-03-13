@@ -9,7 +9,7 @@ class Solution {
         int max=0;
         for(int i=1;i<words.length;i++){
             for(int j=0;j<i;j++){
-                if(riyal(words[i],words[j])&&dp[i]<dp[j]+1){
+                if(riyal(words[j],words[i])&&dp[i]<dp[j]+1){
                     dp[i]=dp[j]+1;
                 }
             }
@@ -21,17 +21,17 @@ class Solution {
         
         
     }public boolean riyal(String prev,String curr){
-        if(prev.length() != curr.length()+1) return false;
+        if(prev.length()+1 != curr.length()) return false;
         int i=0;int j=0;
         boolean flag=false;
-        while(j<prev.length()){
-            if(i<curr.length()&&prev.charAt(j)==curr.charAt(i)){
+        while(i<curr.length()){
+            if(j<prev.length()&&prev.charAt(j)==curr.charAt(i)){
                 i++;
                 j++;
             }else{
                 if(flag)return false;
                 flag=true;
-                j++;
+                i++;
             }
         }
         return true;
