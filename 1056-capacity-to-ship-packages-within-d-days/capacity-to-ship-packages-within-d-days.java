@@ -19,13 +19,13 @@ class Solution {
         
     }public boolean helper(int[]weights,int days,int m){
         int day=1;
-        int load=0;
+        int ship=0;
         for(int a:weights){
-            if(load+a>m){
+            if(ship+a>m){//load me value ko add karo agar mid(capacity)se upar nikal jaye dusre din loading karna day++ aur ship ko empty karo ; other wise load me add kare raho 
                 day++;
-                load=0;
+                ship=0;
             }
-            load+=a;
+            ship+=a;
         }
         return day<=days;
     }
