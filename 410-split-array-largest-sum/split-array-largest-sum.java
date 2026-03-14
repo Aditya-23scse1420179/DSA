@@ -20,11 +20,12 @@ class Solution {
     }public boolean helper(int[]nums,int k,int mid){
         int day=1,m=0;
         for(int a:nums){
-            m+=a;
-            if(m>mid){
+            if(m+a>mid){
                 day++;
-                m=a;
+                m=0;
             }
+            m+=a;
+            
         }
         return day<=k;
 
