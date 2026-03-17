@@ -19,12 +19,14 @@ class Solution {
                 ans[i]=a;
                 continue;
             }
-            if(h[a]<h[b]){
+            else if(h[a]<h[b]){
                 ans[i]=b;
                 continue;
+            }else {
+                int target=Math.max(h[a],h[b]);
+                int res=sum(0,0,n-1,b+1,target);
+                ans[i]=res;
             }
-            int target=Math.max(h[a],h[b]);
-            ans[i]=sum(0,0,n-1,b+1,target);
         }
         return ans;
     }public void build(int idx,int l,int r){
@@ -39,11 +41,9 @@ class Solution {
     }public int sum(int idx,int l,int r,int qs,int target){
         if(r<qs||st[idx]<=target)return -1;
         if(l==r)return l;
-        int ans=-1;
         int mid=l+(r-l)/2;
-        if(mid>=qs){
-            ans=sum(2*idx+1,l,mid,qs,target);
-        }if(ans!=-1)return ans;
-        return ans=sum(2*idx+2,mid+1,r,qs,target);
+        int ans=sum(2*idx+1,l,mid,qs,target);
+        if(ans!=-1)return ans;
+        return sum(2*idx+2,mid+1,r,qs,target);
     }
 }
