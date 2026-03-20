@@ -44,7 +44,7 @@ class Solution {
         segTree seg=new segTree(id);
         int ans=0;
         for(int i=0;i<nums.length;i++){
-            int r=map.get(2L*nums[i]);
+            int r=map.get(2L*nums[i]);// find elemnt and its 2* then search from its +1 idx as it is sorted to bade element hi milenge 
             ans+=seg.query(0,0,id-1,r+1,id-1);
             int pos=map.get((long)nums[i]);
             seg.update(0,0,id-1,pos);
