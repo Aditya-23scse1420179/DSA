@@ -7,7 +7,7 @@ class Solution {
             pre[i]=pre[i-1]+nums[i-1];
         }
         Deque<Integer>dq=new ArrayDeque<>();
-        int ans=n+1;
+        int ans=Integer.MAX_VALUE;
         for(int j=0;j<=n;j++){
             while(!dq.isEmpty()&&pre[j]-pre[dq.peekFirst()]>=k){
                 ans=Math.min(ans,j-dq.pollFirst());
@@ -17,6 +17,6 @@ class Solution {
             }
             dq.offerLast(j);
         }
-        return ans==n+1?-1:ans;
+        return ans==Integer.MAX_VALUE?-1:ans;
     }
 }
