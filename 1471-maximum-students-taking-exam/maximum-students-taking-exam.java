@@ -34,7 +34,7 @@ class Solution {
                 visit[nr][nc]=true;
                 if(matr[nr][nc]==-1||dfs(matr[nr][nc],matc[nr][nc],seats,visit)){
                     matr[nr][nc]=r;
-                    matc[nr][nc]=c;
+                    matc[nr][nc]=c;//idx store kar lo 
                     return true;
                 }
             }
