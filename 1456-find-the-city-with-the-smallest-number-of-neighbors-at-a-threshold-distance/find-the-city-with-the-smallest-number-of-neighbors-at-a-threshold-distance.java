@@ -6,27 +6,24 @@ class Solution {
             this.weight=weight;
         }
     }
-    static int[]dist;
     static int m;
-    static int N;
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
-        N=n;
-        m=edges.length;
+        m=edges[0].length;
         ArrayList<ArrayList<pair>>list=new ArrayList<>();
         for(int i=0;i<n;i++){
             list.add(new ArrayList<>());
         }
-        int result=-1;
-        int reach=(int)1e9;
-        for(int[] a:edges){
+        for(int[]a:edges){
             int u=a[0];
             int v=a[1];
             int w=a[2];
             list.get(u).add(new pair(v,w));
             list.get(v).add(new pair(u,w));
         }
+        int result=-1;
+        int replace=(int)1e9;
         for(int start=0;start<n;start++){
-            dist=new int[n];
+            int []dist=new int[n];
             Arrays.fill(dist,(int)1e9);
             PriorityQueue<pair>q=new PriorityQueue<>((a,b)->Integer.compare(a.weight,b.weight));
             q.offer(new pair(start,0));
@@ -44,12 +41,13 @@ class Solution {
                         q.offer(new pair(v,dist[v]));
                     }
                 }
-            }int rechable=0;
-            for(int i=0;i<n;i++){
-                if(i!=start&&dist[i]<=distanceThreshold)rechable++;
             }
-            if(rechable<=reach){
-                reach=rechable;
+            int rep=0;
+            for(int i=0;i<n;i++){
+                if(i!=start&&dist[i]<=distanceThreshold)rep++;
+            }
+            if(rep<=replace){
+                replace=rep;
                 result=start;
             }
         }
