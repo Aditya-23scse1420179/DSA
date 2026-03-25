@@ -13,11 +13,13 @@ class Solution {
         int m=mat[0].length;
         boolean[][]visit=new boolean[n][m];
         Queue<pair>q=new LinkedList<>();
+        int[][]dist=new int[n][m];
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(mat[i][j]==0&&!visit[i][j]){
                     q.offer(new pair(i,j));
                     visit[i][j]=true;
+                    dist[i][j]=0;
                 }
             }
         }
@@ -29,12 +31,12 @@ class Solution {
                 int nr=r+dr[i];
                 int nc=c+dc[i];
                 if(nr>=0&&nr<n&&nc>=0&&nc<m&&!visit[nr][nc]&&mat[nr][nc]==1){
-                    mat[nr][nc]=mat[r][c]+1;
+                    dist[nr][nc]=dist[r][c]+1;
                     visit[nr][nc]=true;
                     q.offer(new pair(nr,nc));
                 }
             }
         }
-        return mat;
+        return dist;
     }
 }
