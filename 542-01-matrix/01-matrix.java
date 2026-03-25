@@ -1,24 +1,20 @@
 class Solution {
     static int[]dr={-1,1,0,0};
     static int[]dc={0,0,-1,1};
-    static int rl;
-    static int cl;
     class pair{
-        int row;
-        int col;
+        int row,col;
         public pair(int row,int col){
             this.row=row;
             this.col=col;
         }
     }
-    boolean[][]visit;
     public int[][] updateMatrix(int[][] mat) {
-        rl=mat.length;
-        cl=mat[0].length;
+        int n=mat.length;
+        int m=mat[0].length;
+        boolean[][]visit=new boolean[n][m];
         Queue<pair>q=new LinkedList<>();
-        visit=new boolean[rl][cl];
-        for(int i=0;i<rl;i++){
-            for(int j=0;j<cl;j++){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
                 if(mat[i][j]==0&&!visit[i][j]){
                     q.offer(new pair(i,j));
                     visit[i][j]=true;
@@ -30,12 +26,12 @@ class Solution {
             int r=curr.row;
             int c=curr.col;
             for(int i=0;i<4;i++){
-                int nrow=r+dr[i];
-                int ncol=c+dc[i];
-                if(nrow>=0&&ncol>=0&&nrow<rl&&ncol<cl&&mat[nrow][ncol]==1&&!visit[nrow][ncol]){
-                    mat[nrow][ncol]=mat[r][c]+1;
-                    visit[nrow][ncol]=true;
-                    q.offer(new pair(nrow,ncol));
+                int nr=r+dr[i];
+                int nc=c+dc[i];
+                if(nr>=0&&nr<n&&nc>=0&&nc<m&&!visit[nr][nc]&&mat[nr][nc]==1){
+                    mat[nr][nc]=mat[r][c]+1;
+                    visit[nr][nc]=true;
+                    q.offer(new pair(nr,nc));
                 }
             }
         }
