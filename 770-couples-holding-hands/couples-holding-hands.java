@@ -13,11 +13,15 @@ class Solution {
             int c2=row[i+1]/2;
             unionrank(c1,c2);
         }
-        Set<Integer>set=new HashSet<>();
+        // Set<Integer>set=new HashSet<>();
+        // for(int i=0;i<n/2;i++){
+        //     set.add(find(i));
+        // }
+        int comp=0;
         for(int i=0;i<n/2;i++){
-            set.add(find(i));
+            if(parent[i]==i)comp++;
         }
-        return n/2-set.size();
+        return n/2-comp;
     }public int find(int x){
         if(x==parent[x])return x;
         return parent[x]=find(parent[x]);
