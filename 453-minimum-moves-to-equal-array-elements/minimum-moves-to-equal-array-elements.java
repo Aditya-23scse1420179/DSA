@@ -6,7 +6,9 @@ class Solution {
         }
         int ans=0;
         for(int b:nums){
-            ans+=Math.abs(min-b);
+            if(b>min){
+                ans+=Math.abs(min-b);
+            }
         }
         return ans;
     }
