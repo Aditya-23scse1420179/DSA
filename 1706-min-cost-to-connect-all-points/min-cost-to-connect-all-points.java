@@ -18,12 +18,13 @@ class Solution {
             int u=curr.node;
             int w=curr.cost;
             
-            if(visit[u]==true)continue;
+            if(visit[u]==true)continue;//pahle se ho to continue karo
             if(!visit[u]){
-                ans+=w;
+                ans+=w;// naya ho to add karo 
+                visit[u]=true;//aur true mark karo 
             }
 
-            visit[u]=true;
+            
 
             for(int i=0;i<n;i++){
                 int cost=Math.abs(points[u][0]-points[i][0])+
