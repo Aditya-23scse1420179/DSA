@@ -27,9 +27,11 @@ class Solution {
             
 
             for(int i=0;i<n;i++){
-                int cost=Math.abs(points[u][0]-points[i][0])+
-                        Math.abs(points[u][1]-points[i][1]);
-                        q.offer(new pair(i,cost));
+                if(!visit[i]){
+                    int cost=Math.abs(points[u][0]-points[i][0])+
+                            Math.abs(points[u][1]-points[i][1]);
+                            q.offer(new pair(i,cost));
+                }
             }
         }
         return ans;
