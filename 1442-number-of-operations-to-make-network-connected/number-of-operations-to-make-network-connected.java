@@ -1,31 +1,48 @@
 class Solution {
-    int[] par;
-
-    public int find(int x) {
-        if(par[x] == x) return x;
-        par[x] = find(par[x]);
-        return par[x];
+    int[] parent;
+    int[] rank;
+    int find(int x){
+        while(parent[x]!=x){
+            x = parent[parent[x]];
+        }
+        return x;
     }
-
-    public void union(int x, int y) {
+    void makeUnion(int x, int y){
         int parX = find(x);
         int parY = find(y);
-        if(parX != parY) {
-            par[parY] = parX;
+        if(parX == parY){
+            return;
+        }
+        else if(rank[parX]<rank[parY]){
+            parent[parX] = parY;
+        }
+        else if(rank[parX]>rank[parY]){
+            parent[parY] = parX;
+        }
+        else{
+            parent[parY] = parX;
+            rank[parX]++;
         }
     }
-
     public int makeConnected(int n, int[][] connections) {
-        par = new int[n];
-        for(int i=0;i<n;i++) par[i] = i;
-        if(connections.length < n-1) return -1;
-        for(int[] conn:connections) {
-            union(conn[0], conn[1]);
+        int edges = connections.length;
+        if(edges<n-1){
+            return -1;
         }
-        int rem = 0;
-        for(int i=0;i<n;i++) {
-            if(par[i] == i) rem++;
+        parent = new int[n];
+        rank = new int[n];
+        for(int i=0; i<n; i++){
+            parent[i] = i;
         }
-        return rem-1;
+        for(int[] con : connections){
+            makeUnion(con[0], con[1]);
+        }
+        Set<Integer> set = new HashSet<>();
+        for(int i=0; i<n; i++){
+            int par = find(i);
+            set.add(par);
+        }
+        int unions = set.size();
+        return unions-1;
     }
 }
