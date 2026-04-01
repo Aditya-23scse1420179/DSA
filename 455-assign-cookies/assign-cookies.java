@@ -4,11 +4,11 @@ class Solution {
     }public int helper(int[]g,int[]s){
         int n=g.length;
         int m=s.length;
-        Arrays.sort(g);
-        Arrays.sort(s);
+        Arrays.sort(g);//nlogn
+        Arrays.sort(s);//mlogm
         int l=0,r=0;
         int count=0;
-        while(l<n&&r<m){
+        while(l<n&&r<m){//m
             if(g[l]<=s[r]){
                 count++;
                 l++;
