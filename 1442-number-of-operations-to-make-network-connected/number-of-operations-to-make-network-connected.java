@@ -37,12 +37,18 @@ class Solution {
         for(int[] con : connections){
             makeUnion(con[0], con[1]);
         }
-        Set<Integer> set = new HashSet<>();
-        for(int i=0; i<n; i++){
-            int par = find(i);
-            set.add(par);
+        int d=0;
+
+        // Set<Integer> set = new HashSet<>();
+        // for(int i=0; i<n; i++){
+        //     int par = find(i);
+        //     set.add(par);
+        // }
+        // int unions = set.size();
+        // return unions-1;
+        for(int i=0;i<n;i++){
+            if(parent[i]==i)d++;
         }
-        int unions = set.size();
-        return unions-1;
+        return d-1;
     }
 }
