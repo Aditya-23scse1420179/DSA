@@ -10,7 +10,7 @@ class Solution {
         this.cost=cost;
         this.target=target;
         this.houses=houses;
-        dp=new Integer[m+1][n+1][target+1];
+        dp=new Integer[m][n+1][target+1];
         int ans=helper(0,0,0);
         return ans>=(int)1e9?-1:ans;
     }public int helper(int idx,int prev,int neighbour ){
@@ -22,7 +22,7 @@ class Solution {
         int ans=(int)1e9;
         if(houses[idx]!=0){
             int color=houses[idx];
-            int ng = neighbour + (color != prev ? 1 : 0);
+            int ng=neighbour+(color!=prev?1:0);
             ans =helper(idx+1,color,ng);
         }else{
             for(int i=1;i<=n;i++){
