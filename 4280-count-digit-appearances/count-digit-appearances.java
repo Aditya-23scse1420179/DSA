@@ -1,15 +1,16 @@
 class Solution {
     public int countDigitOccurrences(int[] nums, int digit) {
         int n=nums.length;
-        int count=0;
-        for(int i=0;i<n;i++){
-            String s=String.valueOf(nums[i]);
-            for(char ch:s.toCharArray()){
-                if(ch-'0'==digit){
-                    count++;
-                }
+        int res=0;
+        for(int a:nums){
+            if(a==0&&digit==0){
+                res++;
+            }
+            while(a>0){
+                if(a%10==digit)res++;//give last digit
+                a/=10;//remove last digit
             }
         }
-        return count;
+        return res;
     }
 }
