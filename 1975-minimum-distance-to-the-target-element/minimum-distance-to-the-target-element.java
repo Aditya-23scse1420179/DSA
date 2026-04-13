@@ -1,0 +1,11 @@
+class Solution {
+    public int getMinDistance(int[] nums, int target, int start) {
+        int sum=(int)1e9;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==target){
+                sum=Math.min(sum,Math.abs(i-start));
+            }
+        }
+        return sum;
+    }
+}
