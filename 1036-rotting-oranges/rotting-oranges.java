@@ -1,49 +1,47 @@
 class Solution {
     static int[]dr={-1,1,0,0};
     static int[]dc={0,0,-1,1};
-    class pair{
-        int row;
-        int col;
-        public pair(int row,int col){
-            this.row=row;
-            this.col=col;
+    static class pair{
+        int r,c;
+        public pair(int r,int c){
+            this.r=r;
+            this.c=c;
         }
     }
     public int orangesRotting(int[][] grid) {
         int n=grid.length;
         int m=grid[0].length;
-        Queue<pair>q=new LinkedList<>();
         int fresh=0;
+        Queue<pair>q=new LinkedList<>();
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(grid[i][j]==2){
                     q.offer(new pair(i,j));
-                }else if(grid[i][j]==1){
-                    fresh++;
-                }
+                }else if(grid[i][j]==1)fresh++;
             }
         }int level=0;
         while(!q.isEmpty()){
-            boolean rotten=false;
+            boolean found=false;
             int size=q.size();
             while(size-->0){
-                pair curr=q.remove();
-                int r=curr.row;
-                int c=curr.col;
+                pair curr=q.poll();
+                int row=curr.r;
+                int col=curr.c;
                 for(int i=0;i<4;i++){
-                    int nr=r+dr[i];
-                    int nc=c+dc[i];
+                    int nr=row+dr[i];
+                    int nc=col+dc[i];
                     if(nr<0||nr>=n||nc<0||nc>=m)continue;
                     if(grid[nr][nc]==1){
                         fresh--;
                         grid[nr][nc]=2;
-                        rotten=true;
+                        found=true;
                         q.offer(new pair(nr,nc));
                     }
                 }
             }
-            if(rotten)level++;
+            if(found)level++;
         }
         return fresh==0?level:-1;
+
     }
 }
