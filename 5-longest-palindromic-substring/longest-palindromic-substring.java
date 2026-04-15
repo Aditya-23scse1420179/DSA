@@ -1,23 +1,21 @@
 class Solution {
     public String longestPalindrome(String s) {
         String ans="";
-        int n=s.length();
-        for(int i=0;i<n;i++){
-            for(int j=i;j<n;j++){
-                String sub=s.substring(i,j+1);
-                if(ispal(sub)&&sub.length()>ans.length()){
-                    ans=sub;
-                }
+        for(int i=0;i<s.length();i++){
+            String odd=ispal(s,i,i);
+            String even=ispal(s,i,i+1);
+            if(odd.length()>ans.length()){
+                ans=odd;
+            }if(even.length()>ans.length()){
+                ans=even;
             }
         }
         return ans;
-    }public boolean ispal(String s){
-        int l=0,r=s.length()-1;
-        while(l<r){
-            if(s.charAt(l)!=s.charAt(r))return false;
-            l++;
-            r--;
+    }public String ispal(String s,int l,int r){
+        while(l>=0&&r<s.length()&&s.charAt(l)==s.charAt(r)){
+            l--;;
+            r++;
         }
-        return true;
+        return s.substring(l+1,r);
     }
 }
