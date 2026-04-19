@@ -11,7 +11,7 @@ class Solution {
         suf[n-1]=nums[n-1];
         for(int i=n-2;i>=0;i--){
             suf[i]=Math.min(suf[i+1],nums[i]);
-        } if (Math.abs(suf[0] - nums[0]) <= k) return 0;
+        }// if (Math.abs(suf[0] - nums[0]) <= k) return 0;
         for(int i=0;i<n;i++){
             int lmax=pre[i];
             int rmin=suf[i];
