@@ -15,15 +15,15 @@
  */
 class Solution {
     public int rob(TreeNode root) {
-        int[]choices=helper(root);
-        return Math.max(choices[0],choices[1]);
-    }public int[] helper(TreeNode node){
-        if(node==null)return new int[2];
-        int[]leftchoice=helper(node.left);
-        int[]rightchoice=helper(node.right);
-        int[]choices=new int[2];
-        choices[0]=node.val+leftchoice[1]+rightchoice[1];
-        choices[1]=Math.max(leftchoice[0],leftchoice[1])+Math.max(rightchoice[0],rightchoice[1]);
-        return choices;
+        int[]choice=helper(root);
+        return Math.max(choice[0],choice[1]);
+    }public int[] helper(TreeNode root){
+        if(root==null)return new int[2];
+        int []left=helper(root.left);
+        int[]right=helper(root.right);
+        int[]choice=new int[2];
+        choice[0]=root.val+left[1]+right[1];
+        choice[1]=Math.max(left[0],left[1])+Math.max(right[0],right[1]);
+        return choice;
     }
 }
