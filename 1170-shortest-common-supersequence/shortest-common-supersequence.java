@@ -1,42 +1,39 @@
-public class Solution {
-    public static String shortestCommonSupersequence(String s1, String s2) {
-        int n =s1.length();
-        int m = s2.length();
-        int [][]dp=new int[n+1][m+1];
-        for(int i =1;i<=n;i++){
-            for(int j=1;j<=m;j++){
+class Solution {
+    public String shortestCommonSupersequence(String s1, String s2) {
+        int [][]dp=new int[s1.length()+1][s2.length()+1];
+        for(int i=1;i<=s1.length();i++){
+            for(int j=1;j<=s2.length();j++){
                 if(s1.charAt(i-1)==s2.charAt(j-1)){
                     dp[i][j]=1+dp[i-1][j-1];
-                }else {
+                }else{
                     dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
                 }
-            }     
-        }
-        StringBuilder sb=new StringBuilder();
-        int i=n,j=m;
-        while(i>0&&j>0){
-            if(s1.charAt(i-1)==s2.charAt(j-1)){
-                sb.append(s1.charAt(i-1));
-                i--;
-                j--;
+            }
+        }StringBuilder sb=new StringBuilder();
+        int n=s1.length(),m=s2.length();
+        int r=n,c=m;
+        while(r>0&&c>0){
+            if(s1.charAt(r-1)==s2.charAt(c-1)){
+                sb.append(s1.charAt(r-1));
+                r--;
+                c--;
+            }else if(dp[r-1][c]>dp[r][c-1]){
+                sb.append(s1.charAt(r-1));
+                r--;
             }else{
-                if(dp[i-1][j]>dp[i][j-1]){
-                    sb.append(s1.charAt(i-1));
-                    i--;
-                }else{
-                    sb.append(s2.charAt(j-1));
-                    j--;
-                }
+                sb.append(s2.charAt(c-1));
+                c--;
             }
         }
-        while(i>0){
-            sb.append(s1.charAt(i-1));
-            i--;
+        while(r>0){
+            sb.append(s1.charAt(r-1));
+            r--;
         }
-        while(j>0){
-            sb.append(s2.charAt(j-1));
-            j--;
+        while(c>0){
+            sb.append(s2.charAt(c-1));
+            c--;
         }
         return sb.reverse().toString();
+
     }
-}        
+}
