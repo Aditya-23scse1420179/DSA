@@ -1,11 +1,13 @@
 class Solution {
+    Integer[]dp;
     public int tribonacci(int n) {
-        int[]f=new int[38];
-        f[0]=0;
-        f[1]=f[2]=1;
-        for(int i=3;i<=n;i++){
-            f[i]=f[i-1]+f[i-2]+f[i-3];
-        }
-        return f[n];
+        dp=new Integer[n+1];
+       return helper(n); 
+    }public int helper(int n){
+        if(n==0)return 0;
+        if(n==1)return 1;
+        if(n==2)return 1;
+        if(dp[n]!=null)return dp[n];
+        return dp[n]= helper(n-1)+helper(n-2)+helper(n-3);
     }
 }
