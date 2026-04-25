@@ -1,19 +1,20 @@
 class Solution {
-    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        int m=obstacleGrid.length;
-        int n= obstacleGrid[0].length;
-        int [][]dp= new int [m][n];
-        for(int[]rows:dp) Arrays.fill(rows,-1);
-        return helper(obstacleGrid,m,n,0,0,dp);
-    }
-    public static int helper(int[][]obstacleGrid,int m,int n,int i,int j,int[][]dp){
-        if(i>=m||j>=n||obstacleGrid[i][j]==1){
-            return 0;
-        }
-        if(i==m-1&&j==n-1)return 1;
-        if(dp[i][j]!=-1)return dp[i][j];
-        int down= helper(obstacleGrid,m,n,i+1,j,dp);
-        int right=helper(obstacleGrid,m,n,i,j+1,dp);
-        return dp[i][j]=(down+right);
+    int n;
+    int m;
+    Integer[][]dp;
+    public int uniquePathsWithObstacles(int[][] grid) {
+        n=grid.length;
+        m=grid[0].length;
+        dp=new Integer[n+1][m+1];
+        return helper(grid,0,0);
+    }public int helper(int[][]grid,int i,int j){
+        if(i>=n||j>=m)return 0;
+         if(grid[i][j]==1)return 0;
+        if(i==n-1&&j==m-1)return 1;
+        if(dp[i][j]!=null)return dp[i][j];
+        int down=helper(grid,i+1,j);
+        int right=helper(grid,i,j+1);
+        return dp[i][j]=down+right;
+
     }
 }
