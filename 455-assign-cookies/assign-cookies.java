@@ -12,8 +12,10 @@ class Solution {
             if(g[l]<=s[r]){
                 count++;
                 l++;
+                r++;
+            }else{
+                r++;
             }
-            r++;
         }
         return count;
     }
