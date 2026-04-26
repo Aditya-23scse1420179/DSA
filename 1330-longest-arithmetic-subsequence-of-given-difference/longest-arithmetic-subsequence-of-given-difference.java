@@ -3,9 +3,13 @@ class Solution {
         HashMap<Integer,Integer>map=new HashMap<>();
         int ans=0;
         for(int a:arr){
-            int len=map.getOrDefault(a-d,0)+1;
-            map.put(a,len);
-            ans=Math.max(ans,len);
+            if(map.containsKey(a-d)){
+                map.put(a,map.get(a-d)+1);
+            }else{
+                map.put(a,1);
+            }
+            ans=Math.max(ans,map.get(a));
+
         }
         return ans;
     }
