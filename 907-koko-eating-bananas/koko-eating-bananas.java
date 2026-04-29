@@ -2,27 +2,27 @@ class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int n=-(int)1e9;
         for(int a:piles){
-            n=Math.max(a,n);
+            n=Math.max(n,a);
         }
-        int low=1;
+        int l=1;
         int high=n;
-        int ans=high;
-        while(low<=high){
-            int mid=low+(high-low)/2;
+        int ans=h;
+        while(l<=high){
+            int mid=l+(high-l)/2;
             if(helper(piles,mid,h)){
                 ans=mid;
                 high=mid-1;
             }else{
-                low=mid+1;
+                l=mid+1;
             }
         }
         return ans;
-    }public boolean helper(int[]piles,int k,int h){
-        long hours=0;
+    }public boolean helper(int[]piles,int mid,int h){
+        long hrs=0;
         for(int a:piles){
-            hours+=a/k;
-            if(a%k!=0)hours++;
+            hrs+=Math.ceil(a/mid);
+            if(a%mid!=0)hrs++;
         }
-        return hours<=h;
+        return hrs<=h;
     }
 }
