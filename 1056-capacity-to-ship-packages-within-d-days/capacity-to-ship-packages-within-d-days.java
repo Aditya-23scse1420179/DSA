@@ -1,14 +1,14 @@
 class Solution {
-    public int shipWithinDays(int[] weights, int days) {
-        int low=0,high=0;
-        for(int a:weights){
-            low=Math.max(low,a);
+    public int shipWithinDays(int[] w, int d) {
+        int low=0;
+        int high=0;
+        for(int a:w){
             high+=a;
-        }
-        int ans=0;
+            low=Math.max(low,a);
+        }int ans=0;
         while(low<=high){
-            int mid=low+(high-low)/2;
-            if(helper(weights,days,mid)){
+            int mid=(low+high)>>1;
+            if(helper(w,d,mid)){
                 ans=mid;
                 high=mid-1;
             }else{
@@ -17,16 +17,16 @@ class Solution {
         }
         return ans;
         
-    }public boolean helper(int[]weights,int days,int m){
-        int day=1;
+    }public boolean helper(int[]w,int d,int mid){
         int ship=0;
-        for(int a:weights){
-            if(ship+a>m){//load me value ko add karo agar mid(capacity)se upar nikal jaye dusre din loading karna day++ aur ship ko empty karo ; other wise load me add kare raho 
-                day++;
+        int days=1;
+        for(int a:w){
+            if(ship+a>mid){
+                days++;
                 ship=0;
             }
             ship+=a;
         }
-        return day<=days;
+        return days<=d;
     }
 }
