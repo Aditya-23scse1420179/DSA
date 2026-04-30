@@ -15,20 +15,13 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        return helper(root, null, null);
-    }
-    private boolean helper(TreeNode node, TreeNode minNode, TreeNode maxNode) {
-        if (node == null){
-            return true;
-        }if (minNode!= null && node.val <=minNode.val){
-            return false;
-        }if (maxNode!= null &&node.val>= maxNode.val){
-            return false;
-        }if(!helper(node.left, minNode, node)){
-            return false;
-        }if(!helper(node.right, node, maxNode)){
-            return false;
-        }
+        return helper(root,null,null);
+    }public boolean helper(TreeNode node,TreeNode min,TreeNode max){
+        if(node==null)return true;
+        if(min!=null&&node.val<=min.val)return false;
+        if(max!=null&&node.val>=max.val)return false;
+        if(!helper(node.left,min,node))return false;
+        if(!helper(node.right,node,max))return false;
         return true;
     }
 }
