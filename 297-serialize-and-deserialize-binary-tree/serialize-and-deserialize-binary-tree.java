@@ -40,12 +40,12 @@ public class Codec {
             if(!value[i].equals("n")){
                 TreeNode left=new TreeNode(Integer.parseInt(value[i]));
                 parent.left=left;
-                q.add(left);
+                q.add(parent.left);
             }
             if(!value[++i].equals("n")){
                 TreeNode right=new TreeNode(Integer.parseInt(value[i]));
                 parent.right=right;
-                q.add(right);
+                q.add(parent.right);
             }
         }
         return root;
