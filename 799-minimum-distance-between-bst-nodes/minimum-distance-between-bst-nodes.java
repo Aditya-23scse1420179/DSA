@@ -13,22 +13,19 @@
  *     }
  * }
  */
-public class Solution {
-    private int minDiff =Integer.MAX_VALUE;
-    private Integer prevVal =null;
-    public int minDiffInBST(TreeNode root){
+class Solution {
+    private int mindiff=(int)1e9;
+    private Integer prevVal=null;
+    public int minDiffInBST(TreeNode root) {
         inorder(root);
-        return minDiff;
-    }
-    private void inorder(TreeNode node){
-        if(node ==null){
-            return;
-        }
+        return mindiff;
+    }public void inorder(TreeNode node){
+        if(node==null)return;
         inorder(node.left);
-        if(prevVal!= null) {
-            minDiff= Math.min(minDiff,node.val -prevVal);
+        if(prevVal!=null){
+            mindiff=Math.min(mindiff,node.val-prevVal);
         }
-        prevVal =node.val;
+        prevVal=node.val;
         inorder(node.right);
     }
 }
