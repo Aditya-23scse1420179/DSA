@@ -14,45 +14,43 @@
  * }
  */
 class Solution {
-    public TreeNode find(TreeNode root,int start){
+    public TreeNode find(TreeNode root, int start) {
         if(root==null)return null;
         if(root.val==start)return root;
         TreeNode ans=find(root.left,start);
-        if(ans!=null)return ans;// ans hoga jisme store kar rahe 
+        if(ans!=null)return ans;
         return find(root.right,start);
-    }
-    public int amountOfTime(TreeNode root, int start) {
+
+    }public int amountOfTime(TreeNode root, int start){
         HashMap<TreeNode,TreeNode>map=new HashMap<>();
-        build(root,null,map);
-        Set<TreeNode>set=new HashSet<>();
-        set.add(find(root,start));
         Queue<TreeNode>q=new LinkedList<>();
+        Set<TreeNode>set=new HashSet<>();
+        build(root,null,map);
+        set.add(find(root,start));
         q.offer(find(root,start));
         int level=0;
         while(!q.isEmpty()){
             int size=q.size();
             while(size-->0){
-                TreeNode curr=q.remove();
+                TreeNode curr=q.poll();
                 if(curr.left!=null&&!set.contains(curr.left)){
-                    q.offer(curr.left);
                     set.add(curr.left);
-                }
-                if(curr.right!=null&&!set.contains(curr.right)){
-                    q.offer(curr.right);
+                    q.offer(curr.left);
+                }if(curr.right!=null&&!set.contains(curr.right)){
                     set.add(curr.right);
+                    q.offer(curr.right);
                 }
                 TreeNode parent=map.get(curr);
                 if(parent!=null&&!set.contains(parent)){
-                    q.offer(parent);
                     set.add(parent);
+                    q.offer(parent);
                 }
             }
             level++;
         }
         return level-1;
-
     }public void build(TreeNode node,TreeNode parent,HashMap<TreeNode,TreeNode>map){
-        if(node==null)return;//root nahi node se check hoga 
+        if(node==null)return;
         map.put(node,parent);
         build(node.left,node,map);
         build(node.right,node,map);
