@@ -23,13 +23,13 @@ class Solution {
         Queue<pair>q=new LinkedList<>();
         q.offer(new pair(0,0,1));
         while(!q.isEmpty()){
-            pair curr=q.remove();
-            int r=curr.row;
-            int c=curr.col;
+            pair curr=q.poll();
+            int u=curr.row;
+            int v=curr.col;
             int w=curr.dist;
             for(int i=0;i<8;i++){
-                int nr= r+dr[i];
-                int nc=c+dc[i];
+                int nr=u+dr[i];
+                int nc=v+dc[i];
                 if(nr<0||nr>=n||nc<0||nc>=m)continue;
                 if(grid[nr][nc]==0){
                     if(dist[nr][nc]>w+1){
@@ -39,6 +39,8 @@ class Solution {
                 }
             }
         }
-        return dist[n-1][m-1]==(int)1e9?-1:dist[n-1][m-1];
+        return dist[n-1][m-1]>=(int)1e9?-1:dist[n-1][m-1];
+
+
     }
 }
