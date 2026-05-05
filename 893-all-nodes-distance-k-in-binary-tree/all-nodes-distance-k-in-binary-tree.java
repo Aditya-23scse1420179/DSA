@@ -9,13 +9,13 @@
  */
 class Solution {
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        ArrayList<Integer>ans=new ArrayList<>();
         HashMap<TreeNode,TreeNode>map=new HashMap<>();
-        build(root,null,map);
         Queue<TreeNode>q=new LinkedList<>();
         Set<TreeNode>set=new HashSet<>();
-        set.add(target);
+        List<Integer>list=new ArrayList<>();
+        build(root,null,map);
         q.offer(target);
+        set.add(target);
         int level=0;
         while(!q.isEmpty()){
             int size=q.size();
@@ -23,24 +23,26 @@ class Solution {
             while(size-->0){
                 TreeNode curr=q.remove();
                 if(curr.left!=null&&!set.contains(curr.left)){
-                    q.offer(curr.left);
                     set.add(curr.left);
-                }if(curr.right!=null&&!set.contains(curr.right)){
-                    q.offer(curr.right);
+                    q.offer(curr.left);
+                }
+                if(curr.right!=null&&!set.contains(curr.right)){
                     set.add(curr.right);
+                    q.offer(curr.right);
                 }
                 TreeNode parent=map.get(curr);
                 if(parent!=null&&!set.contains(parent)){
-                    q.offer(parent);
                     set.add(parent);
+                    q.offer(parent);
                 }
             }
             level++;
         }
         while(!q.isEmpty()){
-            ans.add(q.remove().val);
+            list.add(q.poll().val);
         }
-        return ans;
+        return list;
+
     }public void build(TreeNode node,TreeNode parent,HashMap<TreeNode,TreeNode>map){
         if(node==null)return;
         map.put(node,parent);
