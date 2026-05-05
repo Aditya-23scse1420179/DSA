@@ -15,7 +15,7 @@
  */
 class Solution {
     public TreeNode find(TreeNode root, int start) {
-        if(root==null)return null;
+        if(root==null)return root;
         if(root.val==start)return root;
         TreeNode ans=find(root.left,start);
         if(ans!=null)return ans;
