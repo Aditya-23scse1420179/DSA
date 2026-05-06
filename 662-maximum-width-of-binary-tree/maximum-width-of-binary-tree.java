@@ -14,32 +14,29 @@
  * }
  */
 class Solution {
-    static class pair
-    {
+    class pair{
         TreeNode node;
         int idx;
-        public pair(TreeNode node,int idx)
-        {
+        public pair(TreeNode node,int idx){
             this.node=node;
             this.idx=idx;
         }
     }
     public int widthOfBinaryTree(TreeNode root) {
-        int max=0;
-        Deque<pair>q=new ArrayDeque<>();//doubly ended queue
+        Deque<pair>q=new ArrayDeque<>();
         q.offer(new pair(root,0));
+        int max=0;
         while(!q.isEmpty()){
-            int size=q.size();
+           int size=q.size();
             int first=q.peekFirst().idx;
             int last=q.peekLast().idx;
             max=Math.max(max,last-first+1);
-            while(size-->0)
-            {
+            while(size-->0){
                 pair curr=q.poll();
-                TreeNode node=curr.node;
+                TreeNode n=curr.node;
                 int id=curr.idx;
-                if(node.left!=null)q.offer(new pair(node.left,2*id+1));
-                if(node.right!=null)q.offer(new pair(node.right,2*id+2));
+                if(n.left!=null)q.offer(new pair(n.left,2*id+1));
+                if(n.right!=null)q.offer(new pair(n.right,2*id+2));
             }
         }
         return max;
