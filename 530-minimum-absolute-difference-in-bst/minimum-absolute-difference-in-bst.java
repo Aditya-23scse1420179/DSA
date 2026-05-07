@@ -15,23 +15,17 @@
  */
 class Solution {
     TreeNode prev=null;
+    int ans=(int)1e9;
     public int getMinimumDifference(TreeNode root) {
-        return inorder(root);
-    }public int inorder(TreeNode root){
-        int ans=(int)1e9;
-        if(root==null)return ans;
-        if(root.left!=null){
-            int left=inorder(root.left);
-            ans=Math.min(ans,left);
-        }
+        dfs(root);
+        return ans;
+    }public void dfs(TreeNode root){
+        if(root==null)return;
+        dfs(root.left);
         if(prev!=null){
             ans=Math.min(ans,root.val-prev.val);
         }
         prev=root;
-        if(root.right!=null){
-            int right=inorder(root.right);
-            ans=Math.min(ans,right);
-        }
-        return ans;
+        dfs(root.right);
     }
 }
