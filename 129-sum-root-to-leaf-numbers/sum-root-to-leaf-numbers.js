@@ -14,7 +14,7 @@ var sumNumbers = function(root) {
     function dfs(node,path){
         if(node==null)return 0;
         path=path*10+node.val;
-        if(!node.left&&!node.right)return path;
+        if(node.left==null&&node.right==null)return path;
         return dfs(node.left,path)+dfs(node.right,path);
     }
     return dfs(root,0);
