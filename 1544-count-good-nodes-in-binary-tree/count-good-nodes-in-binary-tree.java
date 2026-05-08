@@ -15,14 +15,14 @@
  */
 class Solution {
     public int goodNodes(TreeNode root) {
-        return helper(root,-(int)1e9);
-    }public int helper(TreeNode node,int max){
-        if(node==null)return 0;
+        return dfs(root,-(int)1e9);
+    }public int dfs(TreeNode root,int max){
+        if(root==null)return 0;
         int count=0;
-        if(node.val>=max)count++;
-        max=Math.max(node.val,max);
-        count+=helper(node.left,max);
-        count+=helper(node.right,max);
+        if(root.val>=max)count++;
+        max=Math.max(max,root.val);
+        count+=dfs(root.left,max);
+        count+=dfs(root.right,max);
         return count;
     }
 }
