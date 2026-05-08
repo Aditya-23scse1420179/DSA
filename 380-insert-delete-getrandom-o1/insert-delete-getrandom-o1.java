@@ -15,11 +15,13 @@ class RandomizedSet {
     }
     
     public boolean remove(int val) {
-        if(!set.contains(val)){
-            return false;
+        if(set.contains(val)){
+            set.remove(val);
+            return true;
+            
         }
-        set.remove(val);
-        return true;
+        return false;
+        
     }
     
     public int getRandom() {
