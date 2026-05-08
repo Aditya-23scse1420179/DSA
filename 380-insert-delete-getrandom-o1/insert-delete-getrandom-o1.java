@@ -26,13 +26,14 @@ class RandomizedSet {
     
     public int getRandom() {
         // for(int a:set.values()){
-            int ridx=rand.nextInt(set.size());
-            Iterator<Integer>it=set.iterator();
-            for(int i=0;i<ridx;i++){
-                it.next();
-            }
-            return it.next();
+        int ridx=rand.nextInt(set.size());
         
+        int i=0;
+        for(int val:set){
+            if(i==ridx)return val;
+            i++;
+        }
+        return 0;
     }
 }
 
