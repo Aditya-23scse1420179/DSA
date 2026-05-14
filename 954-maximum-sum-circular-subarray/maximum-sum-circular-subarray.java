@@ -1,18 +1,18 @@
 class Solution {
     public int maxSubarraySumCircular(int[] nums) {
-        int currmax=nums[0];
-        int currmin=nums[0];
-        int maxs=nums[0];
-        int mins=nums[0];
-        int total=nums[0];
-        for(int i=1;i<nums.length;i++){
-            currmax=Math.max(nums[i],nums[i]+currmax);
-            maxs=Math.max(maxs,currmax);
-            currmin=Math.min(nums[i],nums[i]+currmin);
-            mins=Math.min(mins,currmin);
-            total+=nums[i];
+        int csum=0;
+        int max=nums[0];
+        int cmin=0;
+        int min=nums[0];
+        int total=0;
+        for(int a:nums){
+            csum=Math.max(a,csum+a);
+            max=Math.max(max,csum);
+            cmin=Math.min(a,cmin+a);
+            min=Math.min(min,cmin);
+            total+=a;
         }
-        if(mins==total)return maxs;
-        return Math.max(maxs,total-mins);
+        if(max<0)return max;
+        return Math.max(max,total-min);
     }
 }
