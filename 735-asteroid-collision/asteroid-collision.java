@@ -6,13 +6,12 @@ class Solution {
                 st.add(a);
             }else{
                 while(!st.isEmpty()&&st.peek()>0&&st.peek()<Math.abs(a)){
-                    st.pop();
+                    st.pop(); 
                 }
                 if(!st.isEmpty()&&st.peek()>0&&st.peek()==Math.abs(a)){
                     st.pop();
-                    continue;
                 }
-                if(st.isEmpty()||st.peek()<0){
+                else if(st.isEmpty()||st.peek()<0){
                     st.push(a);
                 }
             }
