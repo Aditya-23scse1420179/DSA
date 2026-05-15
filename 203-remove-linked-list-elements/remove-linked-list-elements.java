@@ -18,7 +18,7 @@ class Solution {
             if(curr.val==val){
                 prev.next=curr.next;
             }else {
-                prev=curr;
+                prev=prev.next;
             }
             curr=curr.next;
         }
