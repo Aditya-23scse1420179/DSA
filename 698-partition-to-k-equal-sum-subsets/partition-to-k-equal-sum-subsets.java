@@ -13,7 +13,7 @@ public class Solution {
         return canPartition(nums, visited, 0, k, 0, subsetSum);
     }
     private boolean canPartition(int[] nums, boolean[] visited, int start, int k, int curSum, int subsetSum) {
-        if(k ==0){
+        if(k ==1){
             return true;
         }
         if(curSum == subsetSum) {
