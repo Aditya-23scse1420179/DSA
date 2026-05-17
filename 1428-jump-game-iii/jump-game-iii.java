@@ -1,24 +1,15 @@
 class Solution {
+    boolean[]visit;
     public boolean canReach(int[] arr, int start) {
-        int n=arr.length;
-        boolean[]visit=new boolean[arr.length+1];
-        Queue<Integer>q=new LinkedList<>();
-        q.offer(start);
-        visit[start]=true;
-        while(!q.isEmpty()){
-            int curr=q.poll();
-            if(arr[curr]==0)return true;
-            int forward=curr+arr[curr];
-            int backward=curr-arr[curr];
-            if(forward<n&&!visit[forward]){
-                visit[forward]=true;
-                q.offer(forward);
-            }
-            if(backward>=0&&!visit[backward]){
-                visit[backward]=true;
-                q.offer(backward);
-            }
-        }
-        return false;
+        visit=new boolean[arr.length+1];
+        return dfs(start,arr);
+    }public boolean dfs(int idx,int[]arr){
+        if(idx<0||idx>=arr.length)return false;
+        if(visit[idx]==true)return false;
+        if(arr[idx]==0)return true;
+        visit[idx]=true;
+        int fwd=idx+arr[idx];
+        int rwd=idx-arr[idx];
+        return dfs(fwd,arr)||dfs(rwd,arr);
     }
 }
