@@ -9,7 +9,7 @@ class Solution {
         if(dp[idx]!=null)return dp[idx];
         if(nums[idx]==0)return Integer.MAX_VALUE;
         int min=Integer.MAX_VALUE;
-        for(int i=1;i<=nums[idx]&&idx+i<=nums.length-1;i++){
+        for(int i=1;i<=nums[idx];i++){
            int next = helper(idx + i, nums);
             if (next != Integer.MAX_VALUE) {
                 min = Math.min(min, 1 + next);
