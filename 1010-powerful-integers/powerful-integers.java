@@ -14,6 +14,6 @@ class Solution {
             }
 
         }
-        return new ArrayList<>(set);
+        return new ArrayList(set);
     }
 }
