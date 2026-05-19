@@ -6,10 +6,8 @@ class Solution {
             set.add(a);
         }
         for(int a:nums2){
-            if(set.contains(a)){
-                ans=Math.min(ans,a);
-            }
+            if(set.contains(a))return a;
         }
-        return ans>=Integer.MAX_VALUE?-1:ans;
+        return -1;
     }
 }
