@@ -14,7 +14,9 @@
  * }
  */
 class Solution {
+    List<TreeNode>[][]dp;
     public List<TreeNode> generateTrees(int n) {
+        dp=new ArrayList[n+1][n+1];
         if (n == 0) {
             return new ArrayList<>();
         }
@@ -26,6 +28,7 @@ class Solution {
             result.add(null);
             return result;
         }
+        if(dp[lo][hi]!=null)return dp[lo][hi];
         for (int i = lo; i <= hi; i++) {
             List<TreeNode> left = helper(lo, i-1);
             List<TreeNode> right = helper(i + 1, hi);
@@ -38,6 +41,6 @@ class Solution {
                 }
             }
         }
-        return result;
+        return dp[lo][hi]=result;
     }
 }
