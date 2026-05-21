@@ -21,7 +21,7 @@ class Solution {
             int u=a[0];
             int v=a[1];
             list.get(u).add(new pair(v,0,2));
-        }
+        } 
         Queue<pair>q=new LinkedList<>();
         int[]dist=new int[n];
         Arrays.fill(dist,(int)1e9);
