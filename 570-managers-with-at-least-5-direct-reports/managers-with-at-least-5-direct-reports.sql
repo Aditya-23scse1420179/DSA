@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-with DirectReports as(
+with cte as(
     select managerId,Count(*)as report_count
     from Employee
     where managerId is not null
@@ -7,6 +7,6 @@ with DirectReports as(
 )
 select e.name
 from Employee e
-join DirectReports d
-  on e.id=d.managerId
-where d.report_count >=5;
+join cte c
+  on e.id=c.managerId
+where c.report_count >=5;
