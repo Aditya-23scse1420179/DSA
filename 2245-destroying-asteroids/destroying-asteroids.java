@@ -3,8 +3,8 @@ class Solution {
         int n=asteroids.length;
         Arrays.sort(asteroids);
         long ans=0;
-        ans=mass;
-        // else return false;
+        if(mass>=asteroids[0])ans=mass;
+        else return false;
         for(int i=0;i<n;i++){
             if(ans>=asteroids[i]){
                 ans+=asteroids[i];
