@@ -1,14 +1,22 @@
 class Solution {
     public void sortColors(int[] nums) {
-        for(int i =0;i<nums.length-1;i++){
-            for(int j = 0;j<nums.length-1-i;j++){
-                if (nums[j]>nums[j+1]){
-                    int temp = nums[j];
-                    nums[j]=nums[j+1];
-                    nums[j+1]=temp;
-                }
+        int min=(int)1e9;
+        int max=-(int)1e9;
+        for(int a:nums){
+            min=Math.min(min,a);
+            max=Math.max(max,a);
+        }
+
+        int[]freq=new int[max-min+1];
+        for(int a:nums){
+            freq[a-min]++;
+        }
+        int idx=0;
+        for(int i=0;i<freq.length;i++){
+            while(freq[i]>0){
+                nums[idx++]=i+min;
+                freq[i]--;
             }
         }
-        
     }
 }
