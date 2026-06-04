@@ -3,7 +3,7 @@ class Solution {
         if(num2<100)return 0;
         int ans=0;
         for(int p=num1;p<=num2;p++){
-            String s=String.valueOf(p);
+            String s=p+"";
             for(int i=1;i<s.length()-1;i++){
                 ans+=valley(s.charAt(i-1)-'0',s.charAt(i)-'0',s.charAt(i+1)-'0');
             }
