@@ -1,4 +1,4 @@
-class Solution {
+class Solution {//floyad cycle detection 
     public int findDuplicate(int[] nums) {
         int slow=nums[0];
         int fast=nums[0];
