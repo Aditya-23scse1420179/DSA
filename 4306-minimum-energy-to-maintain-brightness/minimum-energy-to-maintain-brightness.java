@@ -15,6 +15,6 @@ class Solution {
             }
         }
         ans+=end-start+1;
-        return ((bri+2)/3)*ans;
+        return (long)Math.ceil(bri/3.0)*ans;
     }
 }
