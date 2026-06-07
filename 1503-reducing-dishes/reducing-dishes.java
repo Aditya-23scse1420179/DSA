@@ -1,14 +1,16 @@
 class Solution {
-    public int maxSatisfaction(int[] satisfy) {
-        Arrays.sort(satisfy);
-        int suff=0,sum=0;
-        for(int i=satisfy.length-1;i>=0;i--){
-            suff+=satisfy[i];
-            if(suff<=0){
-                break;
-            }
-            sum+=suff;
-        }
-        return sum;
+    Integer[][]dp;
+    public int maxSatisfaction(int[] a) {
+        Arrays.sort(a);
+        dp=new Integer[a.length+1][a.length+1];
+       return helper(a,1,0);
+    }
+    public int helper(int a[],int time,int ind){
+        if(ind==(a.length))return 0;
+        if(dp[time][ind]!=null)return dp[time][ind];
+          
+        int pick=time*a[ind]+helper(a,time+1,ind+1);
+        int notpick=helper(a,time,ind+1);
+        return dp[time][ind]=Math.max(pick,notpick);
     }
 }
