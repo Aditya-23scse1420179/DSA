@@ -12,11 +12,10 @@ class Solution {
                 more.add(a);
             }
         }
-        int []ans=new int[nums.length];
         int i=0;
-        for(int x:less)ans[i++]=x;
-        for(int x:equal)ans[i++]=x;
-        for(int x:more)ans[i++]=x;
-        return ans;
+        for(int x:less)nums[i++]=x;
+        for(int x:equal)nums[i++]=x;
+        for(int x:more)nums[i++]=x;
+        return nums;
     }
 }
