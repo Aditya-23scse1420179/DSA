@@ -10,37 +10,33 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        l1=helper(l1);
-        l2=helper(l2);
-        if(l1==null||l2==null)return null;
-        ListNode ll=new ListNode(0);
-        ListNode lu=ll;
+        Stack<Integer>st1=new Stack<>();
+        Stack<Integer>st2=new Stack<>();
+        ListNode result=null;
         int carry=0;
-        while(l1!=null||l2!=null||carry!=0){
-            int sum=carry;
-            if(l1!=null){
-                sum+=l1.val;
-                l1=l1.next;
-            }
-            if(l2!=null){
-                sum+=l2.val;
-                l2=l2.next;
-            }
-            carry=sum/10;
-            lu.next=new ListNode(sum%10);
-            lu=lu.next;
+        while(l1!=null){
+            st1.push(l1.val);
+            l1=l1.next;
         }
-        return helper(ll.next);
-
-    }public ListNode helper(ListNode head){
-        ListNode prev=null;
-        ListNode curr=head;
-        while(curr!=null){
-            ListNode temp=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=temp;
+        while(l2!=null){
+            st2.push(l2.val);
+            l2=l2.next;
         }
-        return prev;
+        while(!st1.isEmpty()||!st2.isEmpty()){
+            int add=carry;
+            if(!st1.isEmpty()){
+                add+=st1.pop();
+            }
+            if(!st2.isEmpty()){
+                add+=st2.pop();
+            }
+            int val=add%10;
+            carry=add/10;
+            result=result!=null?new ListNode(val,result):new ListNode(val);
+        }
+        if(carry>0){
+            result=new ListNode(carry,result);
+        }
+        return result;
     }
 }
