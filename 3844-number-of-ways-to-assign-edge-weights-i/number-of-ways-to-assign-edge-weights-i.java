@@ -13,11 +13,11 @@ class Solution {
             adj.get(v).add(u);
         }
         int dept=dfs(1,-1);
-        int res=1;
+        long res=1;
         for(int i=1;i<dept;i++){
             res=(res*2)%1000000007;
         }
-        return res;
+        return (int)res;
     }public int dfs(int node,int parent){
         int depth=0;
         for(int a:adj.get(node)){
