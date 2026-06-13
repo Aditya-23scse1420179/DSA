@@ -1,15 +1,20 @@
 class Solution {
     public String mapWordWeights(String[] words, int[] weights) {
         StringBuilder sb=new StringBuilder();
-        for(String word:words){
-            int ans=0;
-            for(char ch:word.toCharArray()){
-                ans+=weights[ch-'a'];
+        HashMap<Integer,Character>map=new HashMap<>();
+        for (int i=0;i< 26;i++) {
+            map.put(i,(char)('z'-i));
+        }
+        int sum=0;
+        for(String s:words){
+            for(int i=0;i<s.length();i++){
+                sum+=weights[s.charAt(i)-'a'];
             }
-            int res=ans%26;
-            char map=(char)('z'-res);
-            sb.append(map);
+            sum%=26;
+            sb.append(map.get(sum));
+            sum=0;
         }
         return sb.toString();
+        
     }
 }
