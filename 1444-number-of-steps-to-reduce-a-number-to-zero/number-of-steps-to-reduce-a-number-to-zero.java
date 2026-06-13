@@ -1,14 +1,15 @@
 class Solution {
     public int numberOfSteps(int num) {
-        int steps =0;
-        while (num >0) {
-            if ((num &1) ==1){
-                num=num -1;
+        int s=0;
+        while(num>0){
+            if(num%2==0){
+                num/=2;
+                s++;
             }else{
-                num=num / 2;
+                num-=1;
+                s++;
             }
-            steps++;
         }
-        return steps;
+        return s;
     }
 }
