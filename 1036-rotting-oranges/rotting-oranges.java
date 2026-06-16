@@ -35,8 +35,7 @@ class Solution {
                 for(int i=0;i<4;i++){
                     int nr=row+dr[i];
                     int nc=col+dc[i];
-                    if(nr<0||nr>=n||nc<0||nc>=m)continue;
-                    if(grid[nr][nc]==1&&!visit[nr][nc]){
+                    if(nr>=0&&nr<n&&nc>=0&&nc<m&&grid[nr][nc]==1&&!visit[nr][nc]){
                         fresh--;
                         visit[nr][nc]=true;
                         q.offer(new pair(nr,nc,ti+1));
