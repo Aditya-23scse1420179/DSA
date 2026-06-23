@@ -1,27 +1,34 @@
-class Solution {
+public class Solution {
+
+    private static final int MOD = 1_000_000_007;
+
     public int zigZagArrays(int n, int l, int r) {
-        int MOD = (int)1e9 + 7;
-        r -= l;
-        int[] dp = new int[r + 1];
-        Arrays.fill(dp, 1);
+        int[] dp0 = new int[r + 1];
+        int[] dp1 = new int[r + 1];
+        int[] sum0 = new int[r + 2];
+        int[] sum1 = new int[r + 2];
+
+        for (int i = l; i <= r; i++) {
+            dp0[i] = 1;
+            dp1[i] = 1;
+            sum0[i] = i - l + 1;
+            sum1[i] = i - l + 1;
+        }
+
         for (int i = 1; i < n; i++) {
-            int pre = 0, pre2;
-            if ((i & 1) == 1) {
-                for (int v = 0; v <= r; v++) {
-                    pre2 = pre + dp[v];
-                    dp[v] = pre;
-                    pre = pre2 % MOD;
-                }
-            } else {
-                for (int v = r; v >= 0; v--) {
-                    pre2 = pre + dp[v];
-                    dp[v] = pre;
-                    pre = pre2 % MOD;
-                }
+            for (int j = l; j <= r; j++) {
+                dp0[j] = (sum1[r] - sum1[j] + MOD) % MOD;
+                dp1[j] = sum0[j - 1];
+            }
+
+            sum0[l] = dp0[l];
+            sum1[l] = dp1[l];
+            for (int j = l + 1; j <= r; j++) {
+                sum0[j] = (sum0[j - 1] + dp0[j]) % MOD;
+                sum1[j] = (sum1[j - 1] + dp1[j]) % MOD;
             }
         }
-        int res = 0;
-        for (int v : dp) res = (res + v) % MOD;
-        return (int)((long)res * 2 % MOD);
+
+        return (sum0[r] + sum1[r]) % MOD;
     }
 }
