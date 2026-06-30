@@ -28,9 +28,9 @@ class Solution {
         int px=find(x);
         int py=find(y);
         if(px==py)return true;
-        if(rank[px]>py){
+        if(rank[px]>rank[py]){
             parent[py]=px;
-        }else if(rank[py]>px){
+        }else if(rank[py]>rank[px]){
             parent[px]=py;
         }else{
             parent[px]=py;
