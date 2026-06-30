@@ -1,20 +1,23 @@
 class Solution {
-    public int minDistance(String w1, String w2) {
-        int n=w1.length();
-        int m=w2.length();
-        Integer[][]dp=new Integer[n+1][m+1];
-        return helper(w1,w2,n-1,m-1,dp);
-    }
-    public static int helper(String w1,String w2,int i,int j,Integer[][]dp){
-        if(i<0)return j+1;
-        if(j<0)return i+1;
-        if(dp[i][j]!=null)return dp[i][j];
-        if(w1.charAt(i)==w2.charAt(j)){
-            return dp[i][j]= helper(w1,w2,i-1,j-1,dp);
+    public int minDistance(String word1, String word2) {
+        int n=word1.length();
+        int m=word2.length();
+        int[][]dp=new int[n+1][m+1];
+        for(int i=1;i<=n;i++){
+            dp[i][0]=i;
         }
-        int take=helper(w1,w2,i,j-1,dp);
-        int skip=helper(w1,w2,i-1,j,dp);
-        int replace=helper(w1,w2,i-1,j-1,dp);
-        return dp[i][j]= 1+Math.min(take,Math.min(skip,replace));
+        for(int i=1;i<=m;i++){
+            dp[0][i]=i;
+        }
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(word1.charAt(i-1)==word2.charAt(j-1)){
+                    dp[i][j]=dp[i-1][j-1];
+                }else{
+                    dp[i][j]=1+Math.min(dp[i][j-1],Math.min(dp[i-1][j-1],dp[i-1][j]));
+                }
+            }
+        }
+        return dp[n][m];
     }
 }
