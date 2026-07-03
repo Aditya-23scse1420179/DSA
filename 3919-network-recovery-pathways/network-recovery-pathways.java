@@ -66,7 +66,7 @@ class Solution {
                 int v=e.r;
                 int x=e.w;
                 if(x<mid)continue;
-                if(v!=n-1&&!on[v])continue;
+                // if(v!=n-1&&!on[v])continue;
                 dp[v]=Math.min(dp[v],dp[u]+x);
             }
         }
