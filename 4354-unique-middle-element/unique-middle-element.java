@@ -1,13 +1,11 @@
 class Solution {
     public boolean isMiddleElementUnique(int[] nums) {
-        HashMap<Integer,Integer>map=new HashMap<>();
+        int mid=nums[nums.length/2];
+        int count=0;
         for(int a:nums){
-            map.put(a,map.getOrDefault(a,0)+1);
+            if(mid==a)count++;
         }
-        int n=nums.length;
-        int mid=nums[n/2];
-        int freq=map.get(mid);
-        return freq==1;
+        return count==1;
         
     }
 }
