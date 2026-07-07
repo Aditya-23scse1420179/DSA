@@ -1,6 +1,14 @@
 class Solution {
-    public boolean checkPerfectNumber(int n) {
-        if(n == 6 || n == 28 || n == 496 || n == 8128 || n == 33550336) return true;
-        return false;
+    public boolean checkPerfectNumber(int num) {
+        if (num == 1) {
+            return false;
+        }
+        int sum = 1; 
+        for (int i = 2; i <= num / 2; i++) {
+            if (num % i == 0) {
+                sum = sum + i;
+            }
+        }
+        return sum == num;
     }
 }
