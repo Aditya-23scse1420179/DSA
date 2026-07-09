@@ -16,7 +16,7 @@ class Solution {
         Arrays.sort(pairs,(a,b)->Integer.compare(a[0],b[0]));
         for (int i=1;i<n;i++){
             if(pairs[i][0]-pairs[i-1][0]<=maxDiff){
-                parent[pairs[i][1]]=parent[pairs[i-1][1]];
+                union(pairs[i][1],pairs[i-1][1]);
             }
         }
         for(int i=0;i<queries.length;i++){
@@ -29,18 +29,18 @@ class Solution {
         if(x==parent[x])return x;
         return parent[x]=find(parent[x]);
     }
-    // public boolean union(int x,int y){
-    //     int px=find(x);
-    //     int py=find(y);
-    //     if(px==py)return false;
-    //     if(rank[px]>rank[py]){
-    //         parent[py]=px;
-    //     }else if(rank[py]>rank[px]){
-    //         parent[px]=py;
-    //     }else{
-    //         parent[px]=py;
-    //         rank[py]++;
-    //     }
-    //     return true;
-    // }
+    public boolean union(int x,int y){
+        int px=find(x);
+        int py=find(y);
+        if(px==py)return false;
+        if(rank[px]>rank[py]){
+            parent[py]=px;
+        }else if(rank[py]>rank[px]){
+            parent[px]=py;
+        }else{
+            parent[px]=py;
+            rank[py]++;
+        }
+        return true;
+    }
 }
