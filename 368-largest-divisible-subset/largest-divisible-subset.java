@@ -25,7 +25,7 @@ public class Solution {
         for(int i =maxIdx;i!= -1;i =parent[i]){
             result.add(nums[i]);
         }
-        Collections.reverse(result);
+        // Collections.reverse(result);
         return result;
     }
 }
