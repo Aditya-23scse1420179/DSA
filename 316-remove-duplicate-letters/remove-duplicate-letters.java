@@ -1,30 +1,25 @@
 class Solution {
     public String removeDuplicateLetters(String s) {
-        int n = s.length();
-        int[] last = new int[26];
-        for (int i =0;i<n;i++) {
-            last[s.charAt(i) - 'a'] = i;
+        int[]occ=new int[26];
+        for(int i=0;i<s.length();i++){
+            occ[s.charAt(i)-'a']=i;;
         }
-        boolean[] used = new boolean[26];
-        StringBuilder sb = new StringBuilder();
-        for (int i=0;i<n;i++) {
-            char c=s.charAt(i);
-            int idx=c-'a';
-            if (used[idx]) {
-                continue;
+        Stack<Character>st=new Stack<>();
+        // Set<Character>set=new HashSet<>();
+        boolean[]seen=new boolean[26];
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(seen[ch-'a'])continue;
+            while(!st.isEmpty()&&ch<st.peek()&&occ[st.peek()-'a']>i){
+                seen[st.pop()-'a']=false;
             }
-            while (sb.length()>0){
-                char top = sb.charAt(sb.length() - 1);
-                if (top>c&&last[top- 'a']>i){
-                    used[top-'a']=false;
-                    sb.deleteCharAt(sb.length()-1);
-                } else {
-                    break;
-                }
-            }
-            sb.append(c);
-            used[idx] = true;
+            st.push(ch);
+            seen[ch-'a']=true;
         }
-        return sb.toString();
+        StringBuilder sb=new StringBuilder();
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+        return sb.reverse().toString();
     }
 }
