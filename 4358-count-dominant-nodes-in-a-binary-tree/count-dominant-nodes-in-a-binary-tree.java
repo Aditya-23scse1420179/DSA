@@ -16,13 +16,13 @@
 class Solution {
     int count=0;
     public int countDominantNodes(TreeNode root) {
-        dfs(root);
+        helper(root);
         return count;
-    }public int dfs(TreeNode root){
-        if(root==null)return -(int)1e9;
-        int left=dfs(root.left);
-        int right=dfs(root.right);
-        if(root.val>=Math.max(left,right))count++;
+    }public int helper(TreeNode root){
+        if(root==null)return 0;
+        int left=helper(root.left);
+        int right=helper(root.right);
+        if(root.val>=left&&root.val>=right)count++;
         return Math.max(root.val,Math.max(left,right));
     }
 }
