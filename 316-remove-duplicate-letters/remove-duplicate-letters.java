@@ -5,16 +5,15 @@ class Solution {
             occ[s.charAt(i)-'a']=i;;
         }
         Stack<Character>st=new Stack<>();
-        // Set<Character>set=new HashSet<>();
-        boolean[]seen=new boolean[26];
+        Set<Character>set=new HashSet<>();
         for(int i=0;i<s.length();i++){
             char ch=s.charAt(i);
-            if(seen[ch-'a'])continue;
+            if(set.contains(ch))continue;
             while(!st.isEmpty()&&ch<st.peek()&&occ[st.peek()-'a']>i){
-                seen[st.pop()-'a']=false;
+                set.remove(st.pop());
             }
             st.push(ch);
-            seen[ch-'a']=true;
+            set.add(ch);
         }
         StringBuilder sb=new StringBuilder();
         while(!st.isEmpty()){
