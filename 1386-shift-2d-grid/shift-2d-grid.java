@@ -12,10 +12,11 @@ class Solution {
         }
         int size=list.size();
         k%=size;
-
-        helper(0,size-1);
-        helper(0,k-1);
-        helper(k,size-1);
+        if(k>0){
+            helper(0,size-1);
+            helper(0,k-1);
+            helper(k,size-1);
+        }
         List<List<Integer>>result=new ArrayList<>();
         int idx=0;
         for(int i=0;i<n;i++){
