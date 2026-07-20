@@ -9,8 +9,9 @@ class Solution {
         if(dp[n]!=null)return dp[n];
         int result=1*(n-1);
         for(int i=1;i<=n-1;i++){
-            int num=i*Math.max(n-i,helper(n-i));
-            result=Math.max(result,num);
+            int s1=i*(n-i);
+            int s2=i*helper(n-i);
+            result=Math.max(result,Math.max(s1,s2));
         }
         return dp[n]=result;
     }
