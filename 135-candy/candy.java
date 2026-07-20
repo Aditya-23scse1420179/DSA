@@ -1,4 +1,4 @@
-class Solution {
+class Solution { 
     public int candy(int[] ratings) {
         int n=ratings.length;
         int[]left=new int[n];
@@ -19,11 +19,9 @@ class Solution {
                 right[i]=1;
             }
         }
-        int[]ans=new int[n];
         int sum=0;
         for(int i=0;i<n;i++){
-            ans[i]=Math.max(left[i],right[i]);
-            sum+=ans[i];
+            sum+=Math.max(left[i],right[i]);
         }
         return sum;
     }
