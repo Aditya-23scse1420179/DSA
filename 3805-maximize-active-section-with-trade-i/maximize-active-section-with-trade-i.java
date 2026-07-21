@@ -6,7 +6,8 @@ class Solution {
         for(int a:s.toCharArray()){
             if(a=='1')c1++;
         }
-        List<Integer>list=new ArrayList<>();
+        // List<Integer>list=new ArrayList<>();
+        int prev=0,max=0;;
         int i=0;
         while(i<n){
             if(s.charAt(i)=='0'){
@@ -15,14 +16,18 @@ class Solution {
                     count++;
                     i++;
                 }
-                list.add(count);
+                if(prev>0){
+                    max=Math.max(max,prev+count);
+                }
+                prev=count;
+                // list.add(count);
             }else{
                 i++;
             }
-        }int max=0;
-        for(int x=0;x<list.size()-1;x++){
-            max=Math.max(max,list.get(x)+list.get(x+1));
         }
+        // for(int x=0;x<list.size()-1;x++){
+        //     max=Math.max(max,list.get(x)+list.get(x+1));
+        // }
         return max+c1;
     }
 }
