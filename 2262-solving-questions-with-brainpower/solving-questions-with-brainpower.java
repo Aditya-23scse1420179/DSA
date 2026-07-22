@@ -1,13 +1,12 @@
 class Solution {
-    Long[]dp;
+    long[]dp;
     public long mostPoints(int[][] questions) {
-        dp=new Long[questions.length+1];
-        return helper(questions,0);
-    }public long helper(int[][]question,int idx){
-        if(idx>=question.length)return 0;
-        if(dp[idx]!=null)return dp[idx];
-        long take=helper(question,idx+question[idx][1]+1)+question[idx][0];
-        long skip=helper(question,idx+1);
-        return dp[idx]=Math.max(take,skip);
+        dp=new long[questions.length+1];
+        for(int i=questions.length-1;i>=0;i--){
+            long take=questions[i][0]+((i+questions[i][1]+1)<questions.length?dp[i+questions[i][1]+1]:0);
+            long skip=dp[i+1];
+            dp[i]=Math.max(take,skip);
+        }
+        return dp[0];
     }
 }
