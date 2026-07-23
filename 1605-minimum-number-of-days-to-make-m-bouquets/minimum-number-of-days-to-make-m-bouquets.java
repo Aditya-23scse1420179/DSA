@@ -19,8 +19,8 @@ class Solution {
         return ans;
     }public boolean helper(int[]bloomDay,int mid,int m,int k){
         int f=0,b=0;
-        for(int i=0;i<bloomDay.length;i++){
-            if(mid>=bloomDay[i]){
+        for(int i:bloomDay){
+            if(mid>=i){
                 f++;
                 if(f==k){
                     b++;
