@@ -1,20 +1,18 @@
 class Solution {
     public int minimumChairs(String s) {
         int n=s.length();
-        int[]arr=new int[n];
-        arr[0]=1;
-        for(int i=1;i<n;i++){
-            char ch=s.charAt(i);
-            if(ch=='E'){
-                arr[i]=arr[i-1]+1;
-            }else {
-                arr[i]=arr[i-1]-1;
+        int cnt=0,ch=0;
+        for(char a:s.toCharArray()){
+            if(a=='E'){
+                cnt++;
+                if(cnt>ch){
+                    ch=cnt;
+                }
             }
-        }int max=0;
-        for(int a:arr){
-            max=Math.max(max,a);
-            System.out.print(a);
+            else{
+                cnt--;
+            }
         }
-        return max;
+        return ch;
     }
 }
