@@ -15,13 +15,12 @@
  */
 class Solution {
     public boolean isUnivalTree(TreeNode root) {
-        Set<Integer>set=new HashSet<>();
-        helper(root,set);
-        return set.size()==1;
-    }public void helper(TreeNode root,Set<Integer>set){
-        if(root==null)return ;
-        helper(root.left,set);
-        set.add(root.val);
-        helper(root.right,set);
+       return helper(root,root.val);
+    }public boolean helper(TreeNode root,int val){
+        if(root==null)return true;
+        if(root.val!=val)return false;
+        boolean left=helper(root.left,val);
+        boolean right=helper(root.right,val);
+        return left&&right;
     }
 }
