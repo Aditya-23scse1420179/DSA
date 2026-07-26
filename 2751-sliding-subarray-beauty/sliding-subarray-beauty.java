@@ -22,7 +22,7 @@ class Solution {
         int count=0;
         for(int idx=0;idx<50;idx++){
             count+=freq[idx];
-            if(count>=x) {
+            if(count>=x) {//loop sirf -ve pe chalega aur josa chahiye hoga utna count karke ruk jayega 
                 return idx-50;
             }
         }
