@@ -1,13 +1,11 @@
 class Solution {
     public long countCompleteDayPairs(int[] hours) {
-        HashMap<Integer,Long>map=new HashMap<>();
+        int[]freq=new int[24];
         long count=0;
         for(int a:hours){
             int d=(24-a%24)%24;
-            if(map.containsKey(d)){
-                count+=map.get(d);
-            }
-            map.put(a%24,map.getOrDefault(a%24,0L)+1);
+            count+=freq[d];
+            freq[a%24]++;
         }
         return count;
     }
