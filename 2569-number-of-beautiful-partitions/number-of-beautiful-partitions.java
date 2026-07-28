@@ -8,7 +8,7 @@ class Solution {
 		for (int i =1;i<k;i++){
 			for (int j =1;j< n;j++){
 				if(j-0>=minLength&&n-j>=minLength&&!isPrime(s.charAt(j-1))&&isPrime(s.charAt(j))){
-					dp[i][j]=(dp[i][j-1]+dp[i-1][j-minLength])%MOD;
+					dp[i][j]=(dp[i][j-1]+dp[i-1][j-minLength])%MOD;//nocut+cut
 				}else{
 					dp[i][j]=dp[i][j - 1];    // no cut here.
 				}
