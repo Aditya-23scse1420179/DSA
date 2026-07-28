@@ -9,8 +9,9 @@ class Solution {
         String key=s+","+step;
         if(dp.containsKey(key))return dp.get(key);
         long take=helper(s+1,r,step-1);
-        long ntake=helper(s-1,r,step-1);
-        dp.put(key,(int)((take+ntake)%1000000007));
-        return (int)((take+ntake)%1000000007);
+        take+=helper(s-1,r,step-1);
+        take%=1000000007;
+        dp.put(key,(int)take);
+        return (int)take;
     }
 }
