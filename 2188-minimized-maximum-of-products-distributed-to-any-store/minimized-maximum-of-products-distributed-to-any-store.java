@@ -1,6 +1,6 @@
 class Solution {
     public int minimizedMaximum(int n, int[] q) {
-        int low=0,high=q[0];
+        int low=1,high=q[0];
         for(int a:q){
             high=Math.max(high,a);
         }
@@ -18,7 +18,7 @@ class Solution {
     }public boolean helper(int mid,int n,int[]q){
         int store=0;
         for(int a:q){
-            store+=Math.ceil((double)a/mid);
+            store+=(a+mid-1)/mid;
         }
         return store<=n;
     }
