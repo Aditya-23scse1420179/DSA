@@ -14,9 +14,9 @@ class Solution {
             long mid=low+(high-low)/2;
             if(helper(mid)){
                 ans=mid;
-                high=mid-1L;
+                high=mid-1;
             }else{
-                low=mid+1L;
+                low=mid+1;
             }
         }
         return ans;
