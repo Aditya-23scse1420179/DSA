@@ -1,6 +1,6 @@
 class Solution {
     public int minimizedMaximum(int n, int[] q) {
-        int low=0,high=0;
+        int low=0,high=q[0];
         for(int a:q){
             high=Math.max(high,a);
         }
