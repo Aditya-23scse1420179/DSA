@@ -1,15 +1,14 @@
 class Solution {
-    public int helper(int []piles,int i,int j,Integer[][]dp){
+    Integer[][]dp;
+    public int helper(int []piles,int i,int j){
         if(i==j)return piles[i];
         if(dp[i][j]!=null)return dp[i][j];
-        int alice=piles[i]-helper(piles,i+1,j,dp);
-        int bob = piles[j]-helper(piles,i,j-1,dp);
+        int alice=piles[i]-helper(piles,i+1,j);
+        int bob = piles[j]-helper(piles,i,j-1);
         return dp[i][j]= Math.max(alice,bob);
     }
     public boolean stoneGame(int[] piles) {
-        int i=0;
-        int j=piles.length-1;
-        Integer[][]dp= new Integer[piles.length][piles.length];
-        return helper(piles,i,j,dp)>0;
+        dp= new Integer[piles.length][piles.length];
+        return helper(piles,0,piles.length-1)>=0;
     }
 }
