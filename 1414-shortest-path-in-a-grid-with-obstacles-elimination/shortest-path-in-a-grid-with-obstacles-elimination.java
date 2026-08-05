@@ -17,7 +17,6 @@ class Solution {
         boolean[][][]visit=new boolean[n][m][k+1];
         Queue<pair>q=new LinkedList<>();
         q.offer(new pair(0,0,k));
-        visit[0][0][k]=true;
         int step=0;
         while(!q.isEmpty()){
             int size=q.size();
@@ -34,7 +33,7 @@ class Solution {
                     if(grid[nr][nc]==0&&!visit[nr][nc][w]){
                         q.offer(new pair(nr,nc,w));
                         visit[nr][nc][w]=true;
-                    }else if(grid[nr][nc]==1&&w>=1&&!visit[nr][nc][w-1]){//-1 lagega kyunki next cell me jayenge ak k kam ho chuka hoga 1 ki vagah se
+                    }else if(grid[nr][nc]==1&&w>0&&!visit[nr][nc][w-1]){
                         q.offer(new pair(nr,nc,w-1));
                         visit[nr][nc][w-1]=true;
                     }
