@@ -3,8 +3,8 @@ class Solution {
         int[]l=new int[s.length()];
         int[]r=new int[s.length()];
         int[]pre=new int[s.length()];
-        l[0]=s.charAt(0)=='|'?0:-1;
-        pre[0]=s.charAt(0)=='*'?1:0;
+        l[0]=-1;
+        pre[0]=0;
         for(int i=1;i<s.length();i++){
             if(s.charAt(i)=='*'){
                 l[i]=l[i-1];
