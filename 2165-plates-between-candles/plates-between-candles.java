@@ -17,7 +17,7 @@ class Solution {
                 pre[i]=pre[i-1];
             }
         }
-        r[s.length()-1]=(s.charAt(s.length()-1)=='|'?s.length()-1:-1);;
+        r[s.length()-1]=-1;
         for(int i=s.length()-2;i>=0;i--){
              if(s.charAt(i)=='*'){
                 r[i]=r[i+1];
