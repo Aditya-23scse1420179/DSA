@@ -21,9 +21,8 @@ class Solution {
         }
         ListNode dummy=new ListNode(-1);
         curr=dummy;
-        List<ListNode>list=new ArrayList<>(st);
-        for(ListNode node:list){
-            curr.next=node;
+        for(int i=0;i<st.size();i++){
+            curr.next=st.get(i);
             curr=curr.next;
         }
         curr.next=null;
