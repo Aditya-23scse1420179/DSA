@@ -1,9 +1,11 @@
 class Solution {
-  public int missingNumber(int[] nums) {
-    int result = nums.length;
-    for(int i=0;i<nums.length;i++){
-        result^=i^nums[i];
+    public int missingNumber(int[] nums) {
+        int sum=0;
+        int n=nums.length;
+        for(int a:nums){
+            sum+=a;
+        }
+        int ac=n*(n+1)/2;
+        return ac-sum;
     }
-    return result;
-  }
 }
