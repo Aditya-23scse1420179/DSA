@@ -12,15 +12,11 @@ class Solution {
             int e=arr[i];
             int l=0,r=k-1;
             while(r<nums.length){
-                boolean found =false;
                 for(int x=l;x<=r;x++){
                     if(e==nums[x]){
-                        found=true;
+                        map.put(e,map.getOrDefault(e,0)+1);
                         break;
                     }
-                }
-                if(found){
-                    map.put(e,map.getOrDefault(e,0)+1);
                 }
                 l++;
                 r++;
