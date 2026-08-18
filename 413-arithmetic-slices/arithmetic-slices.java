@@ -1,12 +1,14 @@
 class Solution {
     public int numberOfArithmeticSlices(int[] nums) {
-        int total=0,count=0;
-        for(int i=2;i<nums.length;i++){
-            if(nums[i]-nums[i-1]==nums[i-1]-nums[i-2]){
-                count++;
-                total+=count;
+        int total=0,left=0,right=2;
+        while(right<nums.length){
+            int diff=nums[left+1]-nums[left];
+            if(nums[right]-nums[right-1]==diff){
+                total+=(right-left-1);
+                right++;
             }else{
-                count=0;
+                left=right-1;
+                right=left+2;
             }
         }
         return total;
