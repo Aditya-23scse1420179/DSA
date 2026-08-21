@@ -1,15 +1,11 @@
 class Solution {
-    int[]pos;
-    int m;
     public int maxDistance(int[] pos, int m) {
-        this.pos=pos;
-        this.m=m;
         Arrays.sort(pos);
+        int low=1,high=pos[pos.length-1];
         int ans=0;
-        int low=1,high=pos[pos.length-1]-pos[0];
         while(low<=high){
-            int mid=low+high>>1;
-            if(helper(mid)){
+            int mid=low+(high-low)/2;
+            if(helper(pos,m,mid)){
                 ans=mid;
                 low=mid+1;
             }else{
@@ -17,16 +13,14 @@ class Solution {
             }
         }
         return ans;
-
-    }public boolean helper(int mid){
-        int prev=pos[0];
-        int count=1;
+    }public boolean helper(int[]pos,int m,int mid){
+        int b=1,p=pos[0];
         for(int i=1;i<pos.length;i++){
-            if(pos[i]-prev>=mid){
-                count++;
-                prev=pos[i];
+            if(pos[i]-p>=mid){
+                b++;
+                p=pos[i];
             }
         }
-        return count>=m;
+        return b>=m;
     }
-} 
+}
