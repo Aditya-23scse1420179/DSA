@@ -7,8 +7,8 @@ class Solution {
                 if(nums[l]==0)z--;
                 l++;
             }
-            max=Math.max(max,i-l+1);
+            max=Math.max(max,i-l);
         }    
-        return max-1;
+        return max;
     }
 }
