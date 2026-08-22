@@ -16,13 +16,11 @@ class Solution {
         ListNode p=reverse(midnxt);
         ListNode p1=head;
         ListNode p2=p;
-        while(p1!=null&&p2!=null){
-            ListNode h1=p1.next;
-            ListNode h2=p2.next;
+        while(p2!=null){
+            ListNode temp=p1.next;
             p1.next=p2;
-            p2.next=h1;
-            p1=h1;
-            p2=h2;
+            p1=p2;
+            p2=temp;
 
         }
     }public ListNode mid(ListNode head){
