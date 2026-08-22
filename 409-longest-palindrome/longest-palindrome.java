@@ -1,22 +1,17 @@
 class Solution {
     public int longestPalindrome(String s) {
-        int[] freq = new int[128];  
-        for (char c: s.toCharArray()) {
+        if(s.length()==1)return 1;
+        int[]freq=new int[256];
+        for(char c:s.toCharArray()){
             freq[c]++;
-        }
-        int length =0;
-        boolean hasOdd = false;
-        for (int cnt: freq) {
-            if (cnt%2== 0) {
-                length+=cnt;
-            } else {
-                length+= cnt-1;
-                hasOdd =true;
+        }int count=0,odd=0;
+        for(int a:freq){
+            if(a%2==0)count+=a;
+            else {
+                count+=a-1;
+                odd=1;
             }
         }
-        if (hasOdd){
-            length+=1;
-        }
-        return length;
+        return odd+count;
     }
 }
