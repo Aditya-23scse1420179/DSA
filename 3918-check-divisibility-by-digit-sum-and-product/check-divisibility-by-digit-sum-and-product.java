@@ -1,11 +1,11 @@
 class Solution {
     public boolean checkDivisibility(int n) {
-        String s=String.valueOf(n);
-        int su=0,m=1;
-        for(int a:s.toCharArray()){
-            su+=(a-'0');
-            m*=(a-'0');
-        }    
-        return n%(su+m)==0;
+        int s=0,m=1,o=n;
+        while(n>0){
+            s+=n%10;
+            m*=n%10;
+            n/=10;
+        }
+        return o%(m+s)==0;
     }
 }
