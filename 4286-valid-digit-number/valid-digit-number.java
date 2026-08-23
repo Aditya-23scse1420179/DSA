@@ -1,13 +1,12 @@
 class Solution {
     public boolean validDigit(int n, int x) {
         String s=String.valueOf(n);
-        char d=(char)(x+'0');
-        if(s.charAt(0)==d){
-            return false;
-        }
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i)==d)return true;
+        if(s.charAt(0)-'0'!=x){
+            for(char c:s.toCharArray()){
+                if(c-'0'==x)return true;
+            }
         }
         return false;
+        
     }
 }
