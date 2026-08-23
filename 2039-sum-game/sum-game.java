@@ -10,7 +10,6 @@ class Solution {
                 if(i<n/2){
                 ls+=num.charAt(i)-'0';
                 }
-                
                 else
                 rs+=num.charAt(i)-'0';
             }
