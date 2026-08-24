@@ -3,7 +3,6 @@ class Solution {
     int[]arr;
     HashMap<String,Integer>map=new HashMap<>();
     public int stoneGameVIII(int[] stones) {
-        // dp=new Integer[stones.length];
         this.arr=stones;
         pre=new int[stones.length];
         pre[0]=stones[0];
@@ -13,7 +12,6 @@ class Solution {
         return helper(1);
     }public int helper(int i){
         if(i==arr.length-1)return pre[i];
-        // if(dp[i]!=null)return dp[i];
         String key=String.valueOf(i);
         if(map.containsKey(key))return map.get(key);
         int ntake=helper(i+1);
