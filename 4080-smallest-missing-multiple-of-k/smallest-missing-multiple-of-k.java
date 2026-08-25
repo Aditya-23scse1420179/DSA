@@ -4,7 +4,7 @@ class Solution {
         for(int a:nums){
             set.add(a);
         }
-        for(int i=1;i<500;i++){
+        for(int i=1;i<=200;i++){
             if(i%k==0&&!set.contains(i)){
                 return i;
             }
