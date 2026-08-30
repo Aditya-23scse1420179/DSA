@@ -11,11 +11,11 @@ class Solution {
             if(nums[i]==min)x=i+1;
             if(nums[i]==max)y=i+1;
         }
-        int left=Math.min(x,y);
-        int right=Math.max(x,y);
-        int c1=right;
-        int c2=nums.length-left+1;
-        int c3=left+(nums.length-right+1);
+        int left=Math.min(x,y);//aage se dist
+        int right=Math.max(x,y);//piche se dist
+        int c1=right;//dono ko aage se 
+        int c2=nums.length-left+1;//dono ko piche se 
+        int c3=left+(nums.length-right+1);//ak ko age ak ko piche 
         return Math.min(c1,Math.min(c2,c3));
     }
 }
