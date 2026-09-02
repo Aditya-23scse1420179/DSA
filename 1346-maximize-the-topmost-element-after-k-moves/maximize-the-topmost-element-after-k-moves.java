@@ -6,9 +6,9 @@ class Solution {
         }
         int max=-1;
         for(int i=0;i<Math.min(nums.length,k-1);i++){
-            max=Math.max(max,nums[i]);
+            max=Math.max(max,nums[i]);//k-1 pop karke max lo 
         }
-        if(k<nums.length)max=Math.max(max,nums[k]);
+        if(k<nums.length)max=Math.max(max,nums[k]);//kth elemenet top pe hi rahne do kya pata vahi max ho.
         return max;
     }
 }
