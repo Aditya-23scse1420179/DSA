@@ -1,30 +1,24 @@
 class Solution {
-    int res =0;
+    int res=0;
     public int maxProduct(String s) {
-        char[] strArr = s.toCharArray();
-        dfs(strArr , 0, "" ,"");
-        return res; 
-     }
-     public void dfs(char[] strArr , int i , String s1 , String s2){
-        if(i>=strArr.length){
-        if(isPalindrom(s1) && isPalindrom(s2)){
-            res = Math.max(res , s1.length()*s2.length());
-        }
+        char[]arr=s.toCharArray();
+        helper(arr,0,"","");
+        return res;
+    }public void helper(char[]arr,int idx,String s1,String s2){
+        if(idx>=arr.length){
+            if(ispal(s1)&&ispal(s2)){
+                res=Math.max(res,s1.length()*s2.length());
+            }
             return;
         }
-        dfs(strArr , i+1 , s1+ strArr[i] , s2);
-         dfs(strArr , i+1 , s1 , s2+ strArr[i]);
-          dfs(strArr , i+1 , s1 , s2);
-     }
-     public boolean isPalindrom(String str){
-        int j= str.length()-1;
-        char[] strArr = str.toCharArray();
-        for(int i=0;i< str.length() ;i++){
-            if(strArr[i] != strArr[j]){
-                return false;
-            }
-            j--;
+        helper(arr,idx+1,s1+arr[idx],s2);
+        helper(arr,idx+1,s1,s2+arr[idx]);
+        helper(arr,idx+1,s1,s2);
+    }public boolean ispal(String s){
+        int i=0,j=s.length()-1;
+        while(i<j){
+            if(s.charAt(i++)!=s.charAt(j--))return false;
         }
         return true;
-     }
+    }
 }
