@@ -25,6 +25,7 @@ class Solution {
             int dir=curr[3];
             int turn=curr[4];
             if(r==n-1&&c==m-1)return cost;
+            
             if(cost>dp[r][c][dir][turn])continue;
             for(int i=0;i<4;i++){
                 int nr=r+dr[i];
