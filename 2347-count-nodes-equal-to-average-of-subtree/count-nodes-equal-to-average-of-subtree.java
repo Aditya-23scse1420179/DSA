@@ -18,7 +18,7 @@ class Solution {
     public int averageOfSubtree(TreeNode root) {
         helper(root);
         return count;
-    }public int[] helper(TreeNode root){
+    }public int[]helper(TreeNode root){
         if(root==null)return new int[]{0,0};
         int[]left=helper(root.left);
         int[]right=helper(root.right);
