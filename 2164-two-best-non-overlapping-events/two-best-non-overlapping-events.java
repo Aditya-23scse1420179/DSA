@@ -15,7 +15,7 @@ class Solution {
         int ans=events.length,l=idx+1,h=events.length-1;
         while(l<=h){
             int mid=l+(h-l)/2;
-            if(events[mid][0]>end){
+            if(events[mid][0]>=end+1){
                 ans=mid;
                 h=mid-1;
             }else{
