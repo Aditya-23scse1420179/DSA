@@ -1,30 +1,29 @@
 class Solution {
-    public boolean canFinish(int V, int[][] pre) {
+    public boolean canFinish(int n, int[][] p) {
         ArrayList<ArrayList<Integer>>list=new ArrayList<>();
+        List<Integer>ans=new ArrayList<>();
         Queue<Integer>q=new LinkedList<>();
-        ArrayList<Integer>ans=new ArrayList<>();
-        int[]indegree=new int[V];
-        for(int i=0;i<V;i++){
+        int[]indegree=new int[n];
+        for(int i=0;i<n;i++){
             list.add(new ArrayList<>());
-        }for(int i=0;i<pre.length;i++){
-            int u=pre[i][0];
-            int v=pre[i][1];
+        }
+        for(int[]a:p){
+            int u=a[0];
+            int v=a[1];
             list.get(u).add(v);
             indegree[v]++;
-        }for(int i=0;i<V;i++){
-            if(indegree[i]==0){
-                q.offer(i);
-            }
-        }while(!q.isEmpty()){
-            int curr=q.remove();
+        }
+        for(int i=0;i<indegree.length;i++){
+            if(indegree[i]==0)q.offer(i);
+        }
+        while(!q.isEmpty()){
+            int curr=q.poll();
             ans.add(curr);
             for(int a:list.get(curr)){
                 indegree[a]--;
-                if(indegree[a]==0){
-                    q.offer(a);
-                }
+                if(indegree[a]==0)q.offer(a);
             }
         }
-        return ans.size()==V;
+        return ans.size()==n;
     }
 }
