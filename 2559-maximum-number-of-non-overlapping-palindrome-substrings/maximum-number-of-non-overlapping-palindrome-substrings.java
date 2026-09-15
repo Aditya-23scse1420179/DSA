@@ -1,22 +1,21 @@
 class Solution {
     public int maxPalindromes(String s, int k) {
-        int n = s.length(), ans = 0, end = -1;
-        for (int i = 0; i < n; i++) {
-             // Even Length first, then Odd Length
-            for (int l0 : new int[]{i - 1, i}) {
-                int l = l0, r = i;
-                // expand outward from the center
-                while(l>=0 && r < n && s.charAt(l) == s.charAt(r)){
-                    if (r - l + 1 >= k && l > end) {
-                        ans++;
-                        end = r;
-                        break;
-                    }
-                    l--;
-                    r++;
+        int n=s.length(),ans=0,end=-1;
+        for(int i=0;i<n;i++){
+            for(int len:new int[]{k,k+1}){
+                int st=i-len+1;
+                if(st>=0&&st>end&&ispal(s,st,i)){
+                    ans++;
+                    end=i;
+                    break;
                 }
             }
         }
         return ans;
+    }public boolean ispal(String s,int left,int right){
+        while(left<right){
+            if(s.charAt(left++)!=s.charAt(right--))return false;
+        }
+        return true;
     }
 }
