@@ -4,7 +4,7 @@ class Solution {
     public boolean hasValidPath(char[][] grid) {
         n=grid.length;
         m=grid[0].length;
-        dp=new Boolean[n+1][m+1][n+m];
+        dp=new Boolean[n+1][m+1][200];
         return helper(0,0,0,grid);
     }public boolean helper(int r,int c,int count,char[][]grid){
         if(grid[r][c]=='(')count++;
