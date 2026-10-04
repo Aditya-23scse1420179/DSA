@@ -1,35 +1,27 @@
 class Solution {
-    static int[]dr={-1,1,0,0};
-    static int[]dc={0,0,-1,1};
-    static int rl;
-    static int cl;
-    static class pair{
-        int row;
-        int col;
-        public pair(int row,int col){
-            this.row=row;
-            this.col=col;
-        }
-    }
+    int rl,cl;
+    int[]dr={-1,1,0,0};
+    int[]dc={0,0,-1,1};
+    boolean[][]visit;
     public int numIslands(char[][] grid) {
         rl=grid.length;
         cl=grid[0].length;
-        boolean[][]visit=new boolean[rl][cl];
-        int component=0;
+        visit=new boolean[rl][cl];
+        int count=0;
         for(int i=0;i<rl;i++){
             for(int j=0;j<cl;j++){
                 if(grid[i][j]=='1'&&!visit[i][j]){
-                    dfs(i,j,visit,grid);
-                    component++;
+                    dfs(i,j,grid);
+                    count++;
                 }
             }
         }
-        return component;
-    }public void dfs(int r,int c,boolean[][]visit,char[][]grid){
-        if(r<0||c<0||r>=rl||c>=cl||visit[r][c]||grid[r][c]=='0')return ;
+        return count;
+    }public void dfs(int r,int c,char[][]grid){
+        if(r<0||c<0||r>=rl||c>=cl||grid[r][c]=='0'||visit[r][c])return;
         visit[r][c]=true;
-        for(int k=0;k<4;k++){
-            dfs(r+dr[k],c+dc[k],visit,grid);
+        for(int i=0;i<4;i++){
+            dfs(r+dr[i],c+dc[i],grid);
         }
     }
 }
