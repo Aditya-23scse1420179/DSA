@@ -8,7 +8,7 @@ class Solution {
             }else{
                 d--;
                 if(s.charAt(i-1)=='('){
-                    count+=1<<d;
+                    count+=Math.pow(2,d);
                 }
             }
         }
