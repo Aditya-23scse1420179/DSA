@@ -3,10 +3,10 @@ class Solution {
         int count=0,d=0;
         for(int i=0;i<s.length();i++){
             if(s.charAt(i)=='('){
-                ++d;
+                d++;
 
             }else{
-                --d;
+                d--;
                 if(s.charAt(i-1)=='('){
                     count+=1<<d;
                 }
