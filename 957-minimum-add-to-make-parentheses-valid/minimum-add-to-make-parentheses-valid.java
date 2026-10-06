@@ -1,11 +1,11 @@
 class Solution {
     public int minAddToMakeValid(String s) {
-        int opened=0,added=0;
+        int o=0,a=0;
         for (char ch:s.toCharArray()) {
-            if (ch=='(')opened++;
-            else if(opened>0)opened--;  
-            else added++; 
+            if (ch=='(')o++;
+            else if(o>0)o--;  
+            else a++; 
         }
-        return added+opened; 
+        return a+o; 
     }
 }
