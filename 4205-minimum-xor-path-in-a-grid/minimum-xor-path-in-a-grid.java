@@ -14,9 +14,9 @@ class Solution {
     public void helper(int r,int c,int curr){
         if(r==n-1&&c==m-1){
             min=Math.min(min,curr);
-            return ;
+            return;
         }
-        if(dp[r][c][curr]!=null)return ;
+        if(dp[r][c][curr]!=null)return;
         dp[r][c][curr]=true;
         if(c+1<m){
             helper(r,c+1,curr^grid[r][c+1]);
@@ -24,6 +24,5 @@ class Solution {
         if(r+1<n){
             helper(r+1,c,curr^grid[r+1][c]);
         }
-
     }
 }
